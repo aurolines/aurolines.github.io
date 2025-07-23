@@ -6,75 +6,119 @@
   <title>My Books</title>
   <style>
     body {
-      background-color: #fdf6f0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #fdfcfb, #e2d1c3);
       color: #333;
-      padding: 30px;
     }
-    h1 {
+
+    header {
+      padding: 20px;
       text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 40px;
+      background-color: #fff8f0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .book {
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #5e3f2c;
+    }
+
+    .books-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 60px;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      gap: 50px;
+    }
+
+    .book {
+      background-color: #ffffffcc;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      padding: 25px;
+      max-width: 800px;
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       gap: 30px;
     }
+
     .book img {
-      max-width: 250px;
+      width: 180px;
       height: auto;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    .book-info {
-      max-width: 500px;
+
+    .book-details {
+      flex-grow: 1;
     }
-    .book-info h2 {
-      font-size: 1.8em;
-      margin-bottom: 10px;
+
+    .book-details h2 {
+      margin: 0 0 10px;
+      color: #5e3f2c;
     }
-    .book-info a {
-      display: inline-block;
-      margin: 6px 12px 6px 0;
-      padding: 10px 14px;
-      background-color: #333;
-      color: white;
-      border-radius: 8px;
+
+    .book-details p {
+      margin: 0 0 15px;
+      line-height: 1.5;
+    }
+
+    .buy-links a {
       text-decoration: none;
-      font-size: 0.95em;
-      transition: background 0.3s;
+      background-color: #5e3f2c;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      margin-right: 10px;
+      transition: background 0.3s ease;
+      font-size: 0.9em;
     }
-    .book-info a:hover {
-      background-color: #555;
+
+    .buy-links a:hover {
+      background-color: #7a4f35;
     }
   </style>
 </head>
 <body>
-  <h1>My Books</h1>
+  <header>
+    <h1>My Books</h1>
+  </header>
 
-  <!-- The Heart That Holds On -->
-  <div class="book">
-    <img src="the heart that holds on.jpg" alt="The Heart That Holds On Cover" />
-    <div class="book-info">
-      <h2>The Heart That Holds On</h2>
-      <a href="https://amzn.in/d/9SmTbye" target="_blank">eBook (Amazon)</a>
-      <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" target="_blank">Paperback (Pothi)</a>
-      <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" target="_blank">Hardcover (Pothi)</a>
-    </div>
-  </div>
+  <div class="books-container">
 
-  <!-- The Ink That Fades -->
-  <div class="book">
-    <img src="the-ink-that-fades.jpg.png" alt="The Ink That Fades Cover" />
-    <div class="book-info">
-      <h2>The Ink That Fades</h2>
-      <a href="https://amzn.in/d/cR37CGL" target="_blank">eBook (Amazon)</a>
-      <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank">Paperback (Pothi)</a>
-      <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" target="_blank">Hardcover (Pothi)</a>
+    <!-- Book 1: The Heart That Holds On -->
+    <div class="book">
+      <img src="the heart that holds on.jpg" alt="The Heart That Holds On cover" />
+      <div class="book-details">
+        <h2>The Heart That Holds On</h2>
+        <p>A poetic journey through heartbreak, hope, and healing. This book holds verses that once bled, then bloomed. Perfect for those who’ve loved deeply and learned to let go.</p>
+        <div class="buy-links">
+          <a href="https://amzn.in/d/9SmTbye" target="_blank">eBook (Amazon)</a>
+          <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" target="_blank">Paperback (Pothi)</a>
+          <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" target="_blank">Hardcover (Pothi)</a>
+        </div>
+      </div>
     </div>
+
+    <!-- Book 2: The Ink That Fades -->
+    <div class="book">
+      <img src="the-ink-that-fades.jpg.png" alt="The Ink That Fades cover" />
+      <div class="book-details">
+        <h2>The Ink That Fades</h2>
+        <p>A slow-burning romance written in heartbreak’s language. This novel explores love, memory, and everything left unsaid. For those who miss someone they never truly lost.</p>
+        <div class="buy-links">
+          <a href="https://amzn.in/d/cR37CGL" target="_blank">eBook (Amazon)</a>
+          <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank">Paperback (Pothi)</a>
+          <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" target="_blank">Hardcover (Pothi)</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>

@@ -2,118 +2,164 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Digital Home</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
     }
-
     header {
-      background-color: #f8f8f8;
-      padding: 30px;
+      background-color: #000;
+      color: white;
+      padding: 20px 0;
       text-align: center;
-      border-bottom: 1px solid #ddd;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
-
-    section {
-      padding: 30px;
-      max-width: 1000px;
-      margin: auto;
+    .section {
+      margin-bottom: 60px;
     }
-
     h2 {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 10px;
+      font-size: 26px;
+      margin-bottom: 10px;
     }
-
-    .book-section {
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-top: 0;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px 8px 0 0;
+      padding: 10px 18px;
+      font-size: 16px;
+      color: white;
+      background-color: #000;
+      border: none;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #333;
+    }
+    .btn-secondary {
+      background-color: #555;
+    }
+    .btn-secondary:hover {
+      background-color: #777;
+    }
+    .books {
       display: flex;
       flex-wrap: wrap;
       gap: 40px;
-      margin-top: 20px;
     }
-
     .book {
       flex: 1 1 300px;
-      background: #f0f0f0;
-      border-radius: 10px;
+      background: white;
       padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .book img {
-      max-width: 100%;
-      height: auto;
       border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
     }
-
+    .book img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
     .book h3 {
-      margin-top: 15px;
+      margin: 10px 0 5px;
+      font-size: 22px;
     }
-
-    .links a {
-      display: block;
-      margin: 5px 0;
-      text-decoration: none;
-      color: #0073e6;
-      font-weight: bold;
+    .book p {
+      font-size: 16px;
+      margin-bottom: 12px;
     }
-
-    .links a:hover {
-      text-decoration: underline;
+    footer {
+      background-color: #000;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 14px;
+    }
+    @media (max-width: 768px) {
+      .books {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>My Digital Home</h1>
-</header>
+  <header>
+    My Digital Home
+  </header>
 
-<section>
-  <h2>About Me</h2>
-  <p>Hi, I’m Divyansh Maghanani—a BBA student, published author, and aspiring marketer. I find stories in silence, patterns in data, and purpose in everything I create. Whether it’s publishing heartfelt books like <em>The Heart That Holds On</em> or working behind the scenes building backlinks and tracking keyword ranks, I enjoy connecting emotion with execution.</p>
-</section>
+  <div class="container">
 
-<section>
-  <h2>My Books</h2>
-  <div class="book-section">
-
-    <!-- Book 1 -->
-    <div class="book">
-      <img src="the heart that holds on.jpg" alt="The Heart That Holds On">
-      <h3>The Heart That Holds On</h3>
-      <div class="links">
-        <a href="https://amzn.in/d/9SmTbye" target="_blank">Ebook (Amazon)</a>
-        <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" target="_blank">Paperback (Pothi)</a>
-        <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" target="_blank">Hardcover (Pothi)</a>
-      </div>
+    <div class="section">
+      <h2>Hi, I’m Divyansh Maghanani</h2>
+      <p>A BBA student, published author, and aspiring marketer. I find stories in silence, patterns in data, and purpose in everything I create. Whether it’s publishing heartfelt books like <em>The Heart That Holds On</em> or working behind the scenes building backlinks and tracking keyword ranks, I enjoy connecting emotion with execution.</p>
     </div>
 
-    <!-- Book 2 -->
-    <div class="book">
-      <img src="the-ink-that-fades.jpg.png" alt="The Ink That Fades">
-      <h3>The Ink That Fades</h3>
-      <div class="links">
-        <a href="https://amzn.in/d/cR37CGL" target="_blank">Ebook (Amazon)</a>
-        <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank">Paperback (Pothi)</a>
-        <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" target="_blank">Hardcover (Pothi)</a>
+    <div class="section">
+      <h2>Explore My Books</h2>
+      <a href="#books" class="btn">Explore My Books</a>
+    </div>
+
+    <div class="section">
+      <h2>SEO Internship</h2>
+      <p>I’m currently doing a 2-month Off-Page SEO internship at Mr n Mrs Pet. It’s helping me understand the real-world impact of backlinks, keyword tracking, and consistency in content execution.</p>
+    </div>
+
+    <!-- BOOK SECTION -->
+    <div class="section" id="books">
+      <div class="books">
+
+        <!-- Book 1 -->
+        <div class="book">
+          <img src="the-ink-that-fades.jpg.png" alt="The Ink That Fades">
+          <h3>The Ink That Fades</h3>
+          <p>A romance born from poetry and ended by silence.</p>
+          <div class="buttons">
+            <a href="https://amzn.in/d/cR37CGL" class="btn btn-secondary" target="_blank">Ebook (Amazon)</a>
+            <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" class="btn btn-secondary" target="_blank">Paperback (Pothi)</a>
+            <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" class="btn btn-secondary" target="_blank">Hardcover (Pothi)</a>
+          </div>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="book">
+          <img src="the heart that holds on.jpg" alt="The Heart That Holds On">
+          <h3>The Heart That Holds On</h3>
+          <p>A poetry book for people who feel too much and say too little.</p>
+          <div class="buttons">
+            <a href="https://amzn.in/d/9SmTbye" class="btn btn-secondary" target="_blank">Ebook (Amazon)</a>
+            <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" class="btn btn-secondary" target="_blank">Paperback (Pothi)</a>
+            <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" class="btn btn-secondary" target="_blank">Hardcover (Pothi)</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
   </div>
-</section>
+
+  <footer>
+    © 2025 Divyansh Maghanani. All rights reserved.
+  </footer>
 
 </body>
 </html>

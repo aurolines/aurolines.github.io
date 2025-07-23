@@ -1,124 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Digital Home</title>
   <style>
     body {
-      background-color: #f5f5f5;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
       color: #333;
       margin: 0;
       padding: 0;
     }
 
     header {
-      background-color: #ffffff;
+      background-color: #f8f8f8;
       padding: 30px;
       text-align: center;
-      font-size: 2em;
-      font-weight: bold;
-      border-bottom: 2px solid #e0e0e0;
+      border-bottom: 1px solid #ddd;
     }
 
-    .section {
-      padding: 40px 20px;
-      max-width: 800px;
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    section {
+      padding: 30px;
+      max-width: 1000px;
       margin: auto;
     }
 
     h2 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
     }
 
-    p {
-      font-size: 1em;
-      line-height: 1.6;
-    }
-
-    .book-container {
+    .book-section {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 40px;
+      margin-top: 20px;
     }
 
     .book {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 20px;
-      background-color: #fff;
-      padding: 20px;
+      flex: 1 1 300px;
+      background: #f0f0f0;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .book img {
-      width: 150px;
+      max-width: 100%;
       height: auto;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
-    .book-links a {
-      display: inline-block;
-      margin: 5px 10px 5px 0;
+    .book h3 {
+      margin-top: 15px;
+    }
+
+    .links a {
+      display: block;
+      margin: 5px 0;
       text-decoration: none;
-      color: #0077cc;
+      color: #0073e6;
       font-weight: bold;
     }
 
-    @media (max-width: 600px) {
-      .book {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .book img {
-        margin-bottom: 10px;
-      }
+    .links a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <header>My Digital Home</header>
 
-  <div class="section">
-    <h2>About Me</h2>
-    <p>Hi, I’m Divyansh Maghanani—a BBA student, published author, and aspiring marketer. I find stories in silence, patterns in data, and purpose in everything I create. Whether it’s publishing heartfelt books like <em>The Heart That Holds On</em> or working behind the scenes building backlinks and tracking keyword ranks, I enjoy connecting emotion with execution. I’m currently preparing for CAT 2026 while exploring opportunities in content, SEO, and brand marketing.</p>
-  </div>
+<header>
+  <h1>My Digital Home</h1>
+</header>
 
-  <div class="section">
-    <h2>My Books</h2>
-    <div class="book-container">
-      <!-- Book 1 -->
-      <div class="book">
-        <img src="the heart that holds on.jpg" alt="The Heart That Holds On">
-        <div>
-          <h3>The Heart That Holds On</h3>
-          <div class="book-links">
-            <a href="https://amzn.in/d/9SmTbye" target="_blank">eBook</a>
-            <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" target="_blank">Paperback</a>
-            <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" target="_blank">Hardcover</a>
-          </div>
-        </div>
-      </div>
+<section>
+  <h2>About Me</h2>
+  <p>Hi, I’m Divyansh Maghanani—a BBA student, published author, and aspiring marketer. I find stories in silence, patterns in data, and purpose in everything I create. Whether it’s publishing heartfelt books like <em>The Heart That Holds On</em> or working behind the scenes building backlinks and tracking keyword ranks, I enjoy connecting emotion with execution.</p>
+</section>
 
-      <!-- Book 2 -->
-      <div class="book">
-        <img src="the-ink-that-fades.jpg.png" alt="The Ink That Fades">
-        <div>
-          <h3>The Ink That Fades</h3>
-          <div class="book-links">
-            <a href="https://amzn.in/d/cR37CGL" target="_blank">eBook</a>
-            <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank">Paperback</a>
-            <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" target="_blank">Hardcover</a>
-          </div>
-        </div>
+<section>
+  <h2>My Books</h2>
+  <div class="book-section">
+
+    <!-- Book 1 -->
+    <div class="book">
+      <img src="the heart that holds on.jpg" alt="The Heart That Holds On">
+      <h3>The Heart That Holds On</h3>
+      <div class="links">
+        <a href="https://amzn.in/d/9SmTbye" target="_blank">Ebook (Amazon)</a>
+        <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" target="_blank">Paperback (Pothi)</a>
+        <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" target="_blank">Hardcover (Pothi)</a>
       </div>
     </div>
+
+    <!-- Book 2 -->
+    <div class="book">
+      <img src="the-ink-that-fades.jpg.png" alt="The Ink That Fades">
+      <h3>The Ink That Fades</h3>
+      <div class="links">
+        <a href="https://amzn.in/d/cR37CGL" target="_blank">Ebook (Amazon)</a>
+        <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank">Paperback (Pothi)</a>
+        <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" target="_blank">Hardcover (Pothi)</a>
+      </div>
+    </div>
+
   </div>
+</section>
+
 </body>
 </html>

@@ -6,74 +6,152 @@
   <title>My Digital Home</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #f8f4f0, #f0e8e0);
-      color: #222;
-      padding: 40px;
-      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
     }
-
-    h1 {
-      font-size: 48px;
-      margin-bottom: 40px;
-    }
-
-    .book {
-      margin-bottom: 60px;
-    }
-
-    .book img {
-      width: 240px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .book-title {
-      font-size: 28px;
-      margin: 20px 0 10px;
-      font-weight: bold;
-    }
-
-    .links a {
-      display: inline-block;
-      margin: 8px;
-      padding: 10px 20px;
+    header {
       background-color: #222;
       color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background-color 0.3s;
+      padding: 2rem 1rem;
+      text-align: center;
     }
-
-    .links a:hover {
-      background-color: #444;
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+    .section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section h2 {
+      font-size: 2rem;
+      border-bottom: 2px solid #333;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .intro {
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+    .books {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .book {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      max-width: 250px;
+      text-align: center;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.05);
+    }
+    .book img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+    .book h3 {
+      margin: 1rem 0 0.5rem;
+      font-size: 1.2rem;
+    }
+    .book p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btn-primary {
+      background-color: #007BFF;
+      color: white;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+    }
+    .internship, .explore-writing {
+      font-size: 1.1rem;
+      line-height: 1.8;
     }
   </style>
 </head>
 <body>
 
-  <h1>My Digital Home</h1>
+  <header>
+    <h1>My Digital Home</h1>
+    <p>Welcome to my world of words and ideas.</p>
+  </header>
 
-  <!-- Book 1: The Heart That Holds On -->
-  <div class="book">
-    <img src="images/the heart that holds on.jpg" alt="The Heart That Holds On Cover" />
-    <div class="book-title">The Heart That Holds On</div>
-    <div class="links">
-      <a href="https://amzn.in/d/9SmTbye" target="_blank">eBook</a>
-      <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" target="_blank">Paperback</a>
-      <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" target="_blank">Hardcover</a>
+  <div class="section intro">
+    <h2>Who Am I?</h2>
+    <p>
+      Hi, I’m Divyansh Maghanani—a BBA student, published author, and aspiring marketer. I find stories in silence, patterns in data, and purpose in everything I create. Whether it’s publishing heartfelt books like <i>The Heart That Holds On</i> or working behind the scenes building backlinks and tracking keyword ranks, I enjoy connecting emotion with execution.
+    </p>
+    <p>
+      I’m currently preparing for CAT 2026 while exploring opportunities in content, SEO, and brand marketing.
+    </p>
+  </div>
+
+  <!-- BOOKS SECTION -->
+  <div class="section">
+    <h2>My Books</h2>
+    <div class="books">
+      <!-- Book 1 -->
+      <div class="book">
+        <img src="Front Cover.jpg.png" alt="The Ink That Fades">
+        <h3>The Ink That Fades</h3>
+        <p>A romance born from poetry and ended by silence.</p>
+        <a href="https://amzn.in/d/cR37CGL" class="btn btn-primary" target="_blank">eBook</a>
+        <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" class="btn btn-secondary" target="_blank">Paperback</a>
+        <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" class="btn btn-secondary" target="_blank">Hardcover</a>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="book">
+        <img src="the heart that holds on.jpg" alt="The Heart That Holds On">
+        <h3>The Heart That Holds On</h3>
+        <p>A poetry book for people who feel too much and say too little.</p>
+        <a href="https://amzn.in/d/9SmTbye" class="btn btn-primary" target="_blank">eBook</a>
+        <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" class="btn btn-secondary" target="_blank">Paperback</a>
+        <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" class="btn btn-secondary" target="_blank">Hardcover</a>
+      </div>
     </div>
   </div>
 
-  <!-- Book 2: The Ink That Fades -->
-  <div class="book">
-    <img src="images/Front Cover.jpg.png" alt="The Ink That Fades Cover" />
-    <div class="book-title">The Ink That Fades</div>
-    <div class="links">
-      <a href="https://amzn.in/d/cR37CGL" target="_blank">eBook</a>
-      <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank">Paperback</a>
-      <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" target="_blank">Hardcover</a>
-    </div>
+  <div class="section internship">
+    <h2>My Internship</h2>
+    <p>
+      Currently interning at Mr n Mrs Pet as an Off-Page SEO Intern. Learning how Google sees value, one backlink at a time.
+    </p>
+  </div>
+
+  <div class="section explore-writing">
+    <h2>Explore My Writing</h2>
+    <p>
+      I write for the ones who never learned how to stop feeling. Browse quotes, poems, and page snippets from both books below.
+    </p>
+    <ul>
+      <li><a href="#">The Ink That Fades →</a></li>
+      <li><a href="#">The Heart That Holds On →</a></li>
+    </ul>
   </div>
 
 </body>

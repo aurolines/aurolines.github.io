@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Books</title>
+  <style>
+    body {
+      background-color: #fdf6f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      padding: 30px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+    }
+    .book {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 60px;
+      gap: 30px;
+    }
+    .book img {
+      max-width: 250px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .book-info {
+      max-width: 500px;
+    }
+    .book-info h2 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+    .book-info a {
+      display: inline-block;
+      margin: 6px 12px 6px 0;
+      padding: 10px 14px;
+      background-color: #333;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.95em;
+      transition: background 0.3s;
+    }
+    .book-info a:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Books</h1>
+
+  <!-- The Heart That Holds On -->
+  <div class="book">
+    <img src="the heart that holds on.jpg" alt="The Heart That Holds On Cover" />
+    <div class="book-info">
+      <h2>The Heart That Holds On</h2>
+      <a href="https://amzn.in/d/9SmTbye" target="_blank">eBook (Amazon)</a>
+      <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" target="_blank">Paperback (Pothi)</a>
+      <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" target="_blank">Hardcover (Pothi)</a>
+    </div>
+  </div>
+
+  <!-- The Ink That Fades -->
+  <div class="book">
+    <img src="the-ink-that-fades.jpg.png" alt="The Ink That Fades Cover" />
+    <div class="book-info">
+      <h2>The Ink That Fades</h2>
+      <a href="https://amzn.in/d/cR37CGL" target="_blank">eBook (Amazon)</a>
+      <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank">Paperback (Pothi)</a>
+      <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" target="_blank">Hardcover (Pothi)</a>
+    </div>
+  </div>
+</body>
+</html>

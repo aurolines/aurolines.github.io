@@ -1,165 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Digital Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #1a1a2e, #3b0a45, #4e2758);
+      color: #f0e9f5;
     }
-    header {
-      background-color: #000;
-      color: white;
-      padding: 20px 0;
+
+    h1, h2, h3 {
+      margin: 0;
+    }
+
+    .hero {
       text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 1px;
+      padding: 80px 20px;
     }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+
+    .hero h1 {
+      font-size: 3.2em;
+      color: #ffd6eb;
     }
+
     .section {
-      margin-bottom: 60px;
+      padding: 60px 20px;
+      text-align: center;
     }
-    h2 {
-      font-size: 26px;
-      margin-bottom: 10px;
+
+    .section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #ffe6f1;
     }
-    p {
-      font-size: 18px;
+
+    .section p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1em;
       line-height: 1.6;
-      margin-top: 0;
+      color: #e0d3e3;
     }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
     .btn {
       display: inline-block;
-      margin: 10px 8px 0 0;
-      padding: 10px 18px;
-      font-size: 16px;
-      color: white;
-      background-color: #000;
-      border: none;
+      padding: 10px 20px;
+      margin: 8px;
+      border-radius: 25px;
       text-decoration: none;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      font-size: 0.95em;
     }
-    .btn:hover {
-      background-color: #333;
+
+    .btn-primary {
+      background-color: #ae3b76;
+      color: white;
+      border: none;
     }
+
+    .btn-primary:hover {
+      background-color: #913065;
+      transform: scale(1.05);
+    }
+
     .btn-secondary {
-      background-color: #555;
+      background-color: transparent;
+      border: 2px solid #ffb6c1;
+      color: #ffb6c1;
     }
+
     .btn-secondary:hover {
-      background-color: #777;
+      background-color: rgba(255, 182, 193, 0.1);
+      transform: scale(1.05);
     }
+
+    .quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5em;
+      padding: 60px 20px;
+      text-align: center;
+      color: #f5d9e0;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent);
+    }
+
     .books {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 40px;
+      padding: 60px 20px;
     }
+
     .book {
-      flex: 1 1 300px;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 30px;
+      width: 300px;
       text-align: center;
+      backdrop-filter: blur(4px);
+      transition: transform 0.3s ease;
     }
+
+    .book:hover {
+      transform: scale(1.03);
+    }
+
     .book img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 8px;
+      max-width: 180px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    .book h3 {
+      color: #ffd6eb;
       margin-bottom: 10px;
     }
-    .book h3 {
-      margin: 10px 0 5px;
-      font-size: 22px;
-    }
+
     .book p {
-      font-size: 16px;
-      margin-bottom: 12px;
+      color: #e7ccdf;
+      margin-bottom: 20px;
     }
-    footer {
-      background-color: #000;
-      color: white;
+
+    .cta {
+      background: linear-gradient(to right, #fff0f5, #fce4ec);
+      color: #1a1a2e;
+      padding: 60px 20px;
       text-align: center;
-      padding: 20px 0;
-      font-size: 14px;
     }
-    @media (max-width: 768px) {
-      .books {
-        flex-direction: column;
-      }
+
+    .cta h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: #4b2e40;
+    }
+
+    .cta .btn-secondary {
+      border-color: #1a1a2e;
+      color: #1a1a2e;
+    }
+
+    .cta .btn-secondary:hover {
+      background-color: #1a1a2e;
+      color: #fff0f5;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    My Digital Home
-  </header>
-
-  <div class="container">
-
-    <div class="section">
-      <h2>Hi, I’m Divyansh Maghanani</h2>
-      <p>A BBA student, published author, and aspiring marketer. I find stories in silence, patterns in data, and purpose in everything I create. Whether it’s publishing heartfelt books like <em>The Heart That Holds On</em> or working behind the scenes building backlinks and tracking keyword ranks, I enjoy connecting emotion with execution.</p>
-    </div>
-
-    <div class="section">
-      <h2>Explore My Books</h2>
-      <a href="#books" class="btn">Explore My Books</a>
-    </div>
-
-    <div class="section">
-      <h2>SEO Internship</h2>
-      <p>I’m currently doing a 2-month Off-Page SEO internship at Mr n Mrs Pet. It’s helping me understand the real-world impact of backlinks, keyword tracking, and consistency in content execution.</p>
-    </div>
-
-    <!-- BOOK SECTION -->
-    <div class="section" id="books">
-      <div class="books">
-
-        <!-- Book 1 -->
-        <div class="book">
-          <img src="the-ink-that-fades.jpg.png" alt="The Ink That Fades">
-          <h3>The Ink That Fades</h3>
-          <p>A romance born from poetry and ended by silence.</p>
-          <div class="buttons">
-            <a href="https://amzn.in/d/cR37CGL" class="btn btn-secondary" target="_blank">Ebook (Amazon)</a>
-            <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" class="btn btn-secondary" target="_blank">Paperback (Pothi)</a>
-            <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" class="btn btn-secondary" target="_blank">Hardcover (Pothi)</a>
-          </div>
-        </div>
-
-        <!-- Book 2 -->
-        <div class="book">
-          <img src="the heart that holds on.jpg" alt="The Heart That Holds On">
-          <h3>The Heart That Holds On</h3>
-          <p>A poetry book for people who feel too much and say too little.</p>
-          <div class="buttons">
-            <a href="https://amzn.in/d/9SmTbye" class="btn btn-secondary" target="_blank">Ebook (Amazon)</a>
-            <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" class="btn btn-secondary" target="_blank">Paperback (Pothi)</a>
-            <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" class="btn btn-secondary" target="_blank">Hardcover (Pothi)</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
+  <!-- TITLE -->
+  <div class="hero">
+    <h1>My Digital Home</h1>
   </div>
 
-  <footer>
-    © 2025 Divyansh Maghanani. All rights reserved.
-  </footer>
+  <!-- INTRO -->
+  <div class="section">
+    <h2>Hi, I’m Divyansh Maghanani</h2>
+    <p>
+      Author of <em>The Ink That Fades</em> and <em>The Heart That Holds On</em>.<br>
+      I write about love that lingers, heartbreak that heals, and silences that speak louder than closure.<br>
+      If you’ve ever loved deeply — or lost quietly — you’re in the right place.
+    </p>
+    <div class="buttons">
+      <a href="/my-books" class="btn btn-primary">Explore My Books</a>
+      <a href="/explore-my-writing" class="btn btn-secondary">Read My Writing</a>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote">
+    “You called it a phase. But the sky still remembers how we named each other constellations.”<br>
+    — <em>The Heart That Holds On</em>
+  </div>
+
+  <!-- UPDATED BOOK SECTION -->
+  <div class="books">
+    <!-- Book 1 -->
+    <div class="book">
+      <img src="Front Cover.jpg.png" alt="The Ink That Fades">
+      <h3>The Ink That Fades</h3>
+      <p>A romance born from poetry and ended by silence.</p>
+      <a href="https://amzn.in/d/cR37CGL" class="btn btn-secondary">Ebook (Amazon)</a>
+      <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" class="btn btn-secondary">Paperback (Pothi)</a>
+      <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" class="btn btn-secondary">Hardcover (Pothi)</a>
+    </div>
+
+    <!-- Book 2 -->
+    <div class="book">
+      <img src="the heart that holds on.jpg" alt="The Heart That Holds On">
+      <h3>The Heart That Holds On</h3>
+      <p>A poetry book for people who feel too much and say too little.</p>
+      <a href="https://amzn.in/d/9SmTbye" class="btn btn-secondary">Ebook (Amazon)</a>
+      <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" class="btn btn-secondary">Paperback (Pothi)</a>
+      <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" class="btn btn-secondary">Hardcover (Pothi)</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section">
+    <p>
+      Before I was an aspiring marketer, I was just someone writing unsent letters to people who left.<br>
+      My books are those letters — turned into chapters.<br>
+      If you're here, I hope you find a piece of yourself in every line.
+    </p>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="cta">
+    <h3>“The pages may end… but the story doesn’t.”</h3>
+    <p>
+      Follow my writing journey and revisit memories through words.
+    </p>
+    <div class="buttons">
+      <a href="/my-books" class="btn btn-primary">My Books</a>
+      <a href="/portfolio" class="btn btn-secondary">Visit My Portfolio</a>
+    </div>
+  </div>
 
 </body>
 </html>

@@ -391,7 +391,6 @@
 </head>
 <body class="px-4 py-8 md:px-8 lg:px-16 relative">
     <!-- Cosmic background elements -->
-    <!-- Stars Background (Reduced) -->
    <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -410,20 +409,15 @@
             --accent-blue: #7b68ee;
             --deep-blue: #0f0f1a;
         }
-
+        
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background: #000;
-            linear-gradient(to bottom, #1a1a2e, #3b0a45, #4e2758);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
+           background: linear-gradient(to bottom, #1a1a2e, #3b0a45, #4e2758);
             min-height: 100vh;
         }
-
+        
         /* Simplified navbar for mobile */
         .navbar {
             background: rgba(10, 10, 20, 0.9);
@@ -433,27 +427,27 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
         }
-
+        
         @media (max-width: 767px) {
             .navbar {
                 padding-top: 8px !important;
                 padding-bottom: 8px !important;
             }
         }
-
+        
         .logo {
             font-family: 'Cinzel', serif;
             font-weight: 700;
             letter-spacing: 1px;
             transition: all 0.3s ease;
         }
-
+        
         @media (max-width: 767px) {
             .logo-text {
                 font-size: 1.1rem !important;
             }
         }
-
+        
         .logo-text {
             background: linear-gradient(90deg, #ffffff 20%, var(--accent-pink) 50%, #ffffff 80%);
             background-size: 200% auto;
@@ -462,13 +456,13 @@
             color: transparent;
             animation: shine 8s linear infinite;
         }
-
+        
         @keyframes shine {
             to {
                 background-position: 200% center;
             }
         }
-
+        
         /* Desktop navigation links */
         .nav-link {
             position: relative;
@@ -480,7 +474,7 @@
             text-transform: uppercase;
             font-size: 0.85rem;
         }
-
+        
         .nav-link::after {
             content: '';
             position: absolute;
@@ -493,16 +487,16 @@
             transition: transform 0.3s ease;
             transform-origin: right;
         }
-
+        
         .nav-link:hover::after {
             transform: scaleX(1);
             transform-origin: left;
         }
-
+        
         .nav-link:hover {
             color: var(--accent-pink);
         }
-
+        
         /* Super compact hamburger button */
         .hamburger-btn {
             width: 32px;
@@ -518,7 +512,7 @@
             background: rgba(224, 170, 255, 0.1);
             padding: 4px;
         }
-
+        
         .hamburger-btn span {
             display: block;
             width: 18px;
@@ -528,19 +522,19 @@
             transition: all 0.3s ease;
             border-radius: 2px;
         }
-
+        
         .hamburger-btn.active span:nth-child(1) {
             transform: rotate(45deg) translate(3px, 3px);
         }
-
+        
         .hamburger-btn.active span:nth-child(2) {
             opacity: 0;
         }
-
+        
         .hamburger-btn.active span:nth-child(3) {
             transform: rotate(-45deg) translate(3px, -3px);
         }
-
+        
         /* Full screen mobile menu */
         .mobile-menu {
             position: fixed;
@@ -558,12 +552,12 @@
             visibility: hidden;
             transition: all 0.3s ease;
         }
-
+        
         .mobile-menu.active {
             opacity: 1;
             visibility: visible;
         }
-
+        
         .mobile-menu-links {
             display: flex;
             flex-direction: column;
@@ -571,7 +565,7 @@
             width: 100%;
             max-width: 280px;
         }
-
+        
         .mobile-menu-link {
             width: 100%;
             padding: 12px;
@@ -586,7 +580,7 @@
             border-radius: 4px;
             transition: all 0.3s ease;
         }
-
+        
         .mobile-menu-link:hover, .mobile-menu-link:active {
             background: rgba(224, 170, 255, 0.2);
             color: var(--accent-pink);
@@ -595,13 +589,13 @@
 </head>
 <body>
     <!-- Super simplified navigation bar -->
-    <nav class="navbar fixed w-full z-50 px-3 py-2 md:px-4 md:py-4 text-white">
-        <div class="container mx-auto flex justify-between items-center">
+    <nav class="fixed w-full z-50 px-3 text-white h-12">
+       <div class="flex items-center justify-between h-full w-full">
             <!-- Logo -->
             <a href="#" class="logo">
                 <span class="logo-text text-xl md:text-2xl">AUROLINES</span>
             </a>
-
+            
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center">
                 <a href="index.html" class="nav-link text-white">My Digital Home</a>
@@ -610,7 +604,7 @@
                 <a href="about me.html" class="nav-link text-white">About Me</a>
                 <a href="contact me.html" class="nav-link text-white">Contact Me</a>
             </div>
-
+            
             <!-- Hamburger Button -->
             <div class="md:hidden">
                 <div class="hamburger-btn" id="hamburger-btn">
@@ -621,7 +615,7 @@
             </div>
         </div>
     </nav>
-
+    
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-links">
@@ -632,18 +626,18 @@
             <a href="contact me.html" class="mobile-menu-link">Contact Me</a>
         </div>
     </div>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu toggle
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-
+            
             hamburgerBtn.addEventListener('click', function() {
                 this.classList.toggle('active');
                 mobileMenu.classList.toggle('active');
-
+                
                 // Toggle body scroll
                 if (mobileMenu.classList.contains('active')) {
                     document.body.style.overflow = 'hidden';
@@ -651,7 +645,7 @@
                     document.body.style.overflow = '';
                 }
             });
-
+            
             // Close mobile menu when clicking a link
             mobileMenuLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -660,7 +654,7 @@
                     document.body.style.overflow = '';
                 });
             });
-
+            
             // Scroll Effect for Navbar
             window.addEventListener('scroll', () => {
                 const navbar = document.querySelector('.navbar');

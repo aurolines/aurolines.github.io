@@ -511,57 +511,101 @@
         }
         
         /* Mobile menu - completely redesigned */
+        .mobile-menu-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 15, 26, 0.98), rgba(26, 26, 46, 0.95));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu-drawer.open {
+            right: 0;
+        }
+        
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 0;
-            background: linear-gradient(to bottom, rgba(15, 15, 26, 0.98), rgba(26, 26, 46, 0.95));
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 40;
-            overflow: hidden;
-            transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
         }
         
         .mobile-menu-overlay.open {
-            height: 100%;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid rgba(224, 170, 255, 0.2);
+        }
+        
+        .mobile-menu-close {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: rgba(224, 170, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-close:hover {
+            background: rgba(224, 170, 255, 0.2);
+        }
+        
+        .mobile-menu-close svg {
+            width: 18px;
+            height: 18px;
+            stroke: white;
+            stroke-width: 2;
         }
         
         .mobile-menu-content {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            transition-delay: 0.1s;
-            padding: 80px 20px 20px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .mobile-menu-overlay.open .mobile-menu-content {
-            opacity: 1;
-            transform: translateY(0);
+            padding: 1.5rem 1rem;
         }
         
         .mobile-nav-link {
             position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border-radius: 8px;
-            margin: 0.5rem 0;
-            background: rgba(224, 170, 255, 0.05);
             display: block;
-            width: 100%;
-            text-align: center;
-            padding: 0.75rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
             font-weight: 500;
             letter-spacing: 1px;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            color: white;
+            background: rgba(224, 170, 255, 0.05);
+        }
+        
+        .mobile-nav-link:hover {
+            background: rgba(224, 170, 255, 0.1);
+            color: var(--accent-pink);
+            transform: translateX(5px);
         }
         
         .mobile-nav-link::before {
@@ -569,17 +613,13 @@
             position: absolute;
             left: 0;
             top: 0;
-            width: 4px;
+            width: 3px;
             height: 100%;
             background: linear-gradient(to bottom, var(--accent-pink), var(--accent-lavender));
             transform: scaleY(0);
-            transition: transform 0.4s ease;
-        }
-        
-        .mobile-nav-link:hover, .mobile-nav-link:active {
-            background: rgba(224, 170, 255, 0.1);
-            transform: translateX(5px);
-            color: var(--accent-pink);
+            transition: transform 0.3s ease;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
         }
         
         .mobile-nav-link:hover::before {
@@ -598,7 +638,7 @@
             border-radius: 50%;
             transition: all 0.3s ease;
             background: rgba(224, 170, 255, 0.1);
-            z-index: 50; /* Higher than overlay */
+            z-index: 50;
         }
         
         .hamburger::before {
@@ -626,21 +666,6 @@
             margin: 2px 0;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             border-radius: 2px;
-        }
-        
-        .hamburger.open .line1 {
-            transform: rotate(-45deg) translate(-4px, 4px);
-            width: 22px;
-        }
-        
-        .hamburger.open .line2 {
-            opacity: 0;
-            transform: translateX(-10px);
-        }
-        
-        .hamburger.open .line3 {
-            transform: rotate(45deg) translate(-4px, -4px);
-            width: 22px;
         }
         
         /* Particle effect */
@@ -751,17 +776,28 @@
         </div>
     </nav>
     
-    <!-- New Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay md:hidden" id="mobile-menu-overlay">
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay md:hidden" id="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu-drawer md:hidden" id="mobile-menu-drawer">
         <div class="mobile-particles" id="mobile-particles"></div>
+        
+        <div class="mobile-menu-header">
+            <div class="text-white font-bold text-lg">Menu</div>
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        
         <div class="mobile-menu-content">
-            <div class="grid grid-cols-1 gap-2">
-                <a href="#" class="mobile-nav-link">My Digital Home</a>
-                <a href="#" class="mobile-nav-link">My Books</a>
-                <a href="#" class="mobile-nav-link">Explore My Writing</a>
-                <a href="#" class="mobile-nav-link">About Me</a>
-                <a href="#" class="mobile-nav-link">Contact Me</a>
-            </div>
+            <a href="#" class="mobile-nav-link">My Digital Home</a>
+            <a href="#" class="mobile-nav-link">My Books</a>
+            <a href="#" class="mobile-nav-link">Explore My Writing</a>
+            <a href="#" class="mobile-nav-link">About Me</a>
+            <a href="#" class="mobile-nav-link">Contact Me</a>
         </div>
     </div>
     
@@ -864,17 +900,30 @@
             
             const hamburger = document.getElementById('hamburger-button');
             const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
             
+            // Open mobile menu
             hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('open');
-                mobileMenuOverlay.classList.toggle('open');
-                
-                // Prevent body scrolling when menu is open
-                if (mobileMenuOverlay.classList.contains('open')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = '';
-                }
+                mobileMenuOverlay.classList.add('open');
+                mobileMenuDrawer.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close mobile menu
+            function closeMenu() {
+                mobileMenuOverlay.classList.remove('open');
+                mobileMenuDrawer.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+            
+            mobileMenuClose.addEventListener('click', closeMenu);
+            mobileMenuOverlay.addEventListener('click', closeMenu);
+            
+            // Close mobile menu when clicking a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
             });
             
             // Scroll Effect for Navbar
@@ -922,27 +971,15 @@
                 });
             }
             
-            // Close mobile menu when clicking a link
-            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('open');
-                    mobileMenuOverlay.classList.remove('open');
-                    document.body.style.overflow = '';
-                });
-            });
-            
             // Handle window resize
             window.addEventListener('resize', () => {
-                if (window.innerWidth >= 768 && mobileMenuOverlay.classList.contains('open')) {
-                    hamburger.classList.remove('open');
-                    mobileMenuOverlay.classList.remove('open');
-                    document.body.style.overflow = '';
+                if (window.innerWidth >= 768 && mobileMenuDrawer.classList.contains('open')) {
+                    closeMenu();
                 }
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'964576c613fbf4aa',t:'MTc1MzM4MTU2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96457e82514454d1',t:'MTc1MzM4MTg4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
     <div class="stars"></div>
     

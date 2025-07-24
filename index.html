@@ -254,7 +254,7 @@
     </style>
 </head>
 <body>
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -278,6 +278,7 @@
             margin: 0;
             padding: 0;
             background: #000;
+            min-height: 100vh;
         }
         
         .navbar {
@@ -509,20 +510,80 @@
             opacity: 1;
         }
         
-        .mobile-menu {
-            transform: translateY(-100%);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            background: linear-gradient(to bottom, rgba(26, 26, 46, 0.95), rgba(15, 15, 26, 0.98));
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(224, 170, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            max-height: calc(100vh - 70px); /* Ensure it doesn't go off screen */
-            overflow-y: auto; /* Allow scrolling if needed */
+        /* Mobile menu - completely redesigned */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(to bottom, rgba(15, 15, 26, 0.98), rgba(26, 26, 46, 0.95));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 40;
+            overflow: hidden;
+            transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        .mobile-menu.open {
+        .mobile-menu-overlay.open {
+            height: 100%;
+        }
+        
+        .mobile-menu-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: 0.1s;
+            padding: 80px 20px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .mobile-menu-overlay.open .mobile-menu-content {
+            opacity: 1;
             transform: translateY(0);
+        }
+        
+        .mobile-nav-link {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border-radius: 8px;
+            margin: 0.75rem 0;
+            background: rgba(224, 170, 255, 0.05);
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            color: white;
+        }
+        
+        .mobile-nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-pink), var(--accent-lavender));
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .mobile-nav-link:hover, .mobile-nav-link:active {
+            background: rgba(224, 170, 255, 0.1);
+            transform: translateX(5px);
+            color: var(--accent-pink);
+        }
+        
+        .mobile-nav-link:hover::before {
+            transform: scaleY(1);
         }
         
         .hamburger {
@@ -537,6 +598,7 @@
             border-radius: 50%;
             transition: all 0.3s ease;
             background: rgba(224, 170, 255, 0.1);
+            z-index: 50; /* Higher than overlay */
         }
         
         .hamburger::before {
@@ -581,38 +643,6 @@
             width: 22px;
         }
         
-        .mobile-nav-link {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border-radius: 4px;
-            margin: 0.5rem 0;
-            background: rgba(224, 170, 255, 0.05);
-            display: block; /* Ensure full width */
-            width: 100%; /* Full width */
-        }
-        
-        .mobile-nav-link::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent-pink), var(--accent-lavender));
-            transform: scaleY(0);
-            transition: transform 0.4s ease;
-        }
-        
-        .mobile-nav-link:hover {
-            background: rgba(224, 170, 255, 0.1);
-            transform: translateX(5px);
-        }
-        
-        .mobile-nav-link:hover::before {
-            transform: scaleY(1);
-        }
-        
         /* Particle effect */
         .particles-container {
             position: absolute;
@@ -648,10 +678,28 @@
                 opacity: 0.5;
             }
         }
+        
+        /* Mobile menu particles */
+        .mobile-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .mobile-particle {
+            position: absolute;
+            background: rgba(224, 170, 255, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar - This is the only part you need to copy -->
+    <!-- Navigation Bar -->
     <nav class="navbar fixed w-full z-50 px-4 py-4 transition-all duration-500 text-white">
         <!-- Particles Background -->
         <div class="particles-container" id="particles"></div>
@@ -701,28 +749,27 @@
                 </button>
             </div>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-menu absolute top-full left-0 w-full md:hidden z-50">
-            <div class="container mx-auto py-4 px-4 flex flex-col space-y-2">
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
-                    My Digital Home
-                </a>
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
-                    My Books
-                </a>
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
-                    Explore My Writing
-                </a>
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
-                    About Me
-                </a>
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
-                    Contact Me
-                </a>
-            </div>
-        </div>
     </nav>
+    
+    <!-- New Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay md:hidden" id="mobile-menu-overlay">
+        <div class="mobile-particles" id="mobile-particles"></div>
+        <div class="mobile-menu-content">
+            <a href="#" class="mobile-nav-link">My Digital Home</a>
+            <a href="#" class="mobile-nav-link">My Books</a>
+            <a href="#" class="mobile-nav-link">Explore My Writing</a>
+            <a href="#" class="mobile-nav-link">About Me</a>
+            <a href="#" class="mobile-nav-link">Contact Me</a>
+        </div>
+    </div>
+    
+    <!-- Demo content for testing -->
+    <div class="h-screen flex items-center justify-center">
+        <div class="text-white text-center">
+            <h1 class="text-4xl font-bold mb-4">Welcome to Aurolines</h1>
+            <p class="text-xl">Scroll to see the navbar effect</p>
+        </div>
+    </div>
     
     <script>
         // Create particles
@@ -756,16 +803,84 @@
             }
         }
         
-        // Hamburger Menu Toggle
+        // Create mobile menu particles
+        function createMobileParticles() {
+            const particlesContainer = document.getElementById('mobile-particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('mobile-particle');
+                
+                // Random size between 2-6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Animate mobile particles
+        function animateMobileParticles() {
+            const particles = document.querySelectorAll('.mobile-particle');
+            
+            particles.forEach((particle) => {
+                // Initial position
+                let x = parseFloat(particle.style.left);
+                let y = parseFloat(particle.style.top);
+                
+                // Random direction and speed
+                const speedX = (Math.random() - 0.5) * 0.1;
+                const speedY = (Math.random() - 0.5) * 0.1;
+                
+                function moveParticle() {
+                    // Update position
+                    x += speedX;
+                    y += speedY;
+                    
+                    // Wrap around edges
+                    if (x > 100) x = 0;
+                    if (x < 0) x = 100;
+                    if (y > 100) y = 0;
+                    if (y < 0) y = 100;
+                    
+                    // Apply new position
+                    particle.style.left = `${x}%`;
+                    particle.style.top = `${y}%`;
+                    
+                    requestAnimationFrame(moveParticle);
+                }
+                
+                moveParticle();
+            });
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
+            createMobileParticles();
+            animateMobileParticles();
             
             const hamburger = document.getElementById('hamburger-button');
-            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
             
             hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('open');
-                mobileMenu.classList.toggle('open');
+                mobileMenuOverlay.classList.toggle('open');
+                
+                // Prevent body scrolling when menu is open
+                if (mobileMenuOverlay.classList.contains('open')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
             });
             
             // Scroll Effect for Navbar
@@ -818,30 +933,22 @@
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     hamburger.classList.remove('open');
-                    mobileMenu.classList.remove('open');
+                    mobileMenuOverlay.classList.remove('open');
+                    document.body.style.overflow = '';
                 });
-            });
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (mobileMenu.classList.contains('open') && 
-                    !mobileMenu.contains(e.target) && 
-                    !hamburger.contains(e.target)) {
-                    hamburger.classList.remove('open');
-                    mobileMenu.classList.remove('open');
-                }
             });
             
             // Handle window resize
             window.addEventListener('resize', () => {
-                if (window.innerWidth >= 768 && mobileMenu.classList.contains('open')) {
+                if (window.innerWidth >= 768 && mobileMenuOverlay.classList.contains('open')) {
                     hamburger.classList.remove('open');
-                    mobileMenu.classList.remove('open');
+                    mobileMenuOverlay.classList.remove('open');
+                    document.body.style.overflow = '';
                 }
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96456746566e8e92',t:'MTc1MzM4MDkzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96456daa063af4aa',t:'MTc1MzM4MTE5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
     <div class="stars"></div>
     

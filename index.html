@@ -254,8 +254,7 @@
     </style>
 </head>
 <body>
-    <!-- Stars Background (Reduced) -->
-   <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -518,6 +517,8 @@
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(224, 170, 255, 0.2);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-height: calc(100vh - 70px); /* Ensure it doesn't go off screen */
+            overflow-y: auto; /* Allow scrolling if needed */
         }
         
         .mobile-menu.open {
@@ -587,6 +588,8 @@
             border-radius: 4px;
             margin: 0.5rem 0;
             background: rgba(224, 170, 255, 0.05);
+            display: block; /* Ensure full width */
+            width: 100%; /* Full width */
         }
         
         .mobile-nav-link::before {
@@ -667,23 +670,23 @@
             
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center nav-links-container">
-                <a href="index.html" class="nav-link text-white">
+                <a href="#" class="nav-link text-white">
                     <div class="hover-bg"></div>
                     <span>My Digital Home</span>
                 </a>
-                <a href="books.html" class="nav-link text-white">
+                <a href="#" class="nav-link text-white">
                     <div class="hover-bg"></div>
                     <span>My Books</span>
                 </a>
-                <a href="explore my writing.html" class="nav-link text-white">
+                <a href="#" class="nav-link text-white">
                     <div class="hover-bg"></div>
                     <span>Explore My Writing</span>
                 </a>
-                <a href="about me.html" class="nav-link text-white">
+                <a href="#" class="nav-link text-white">
                     <div class="hover-bg"></div>
                     <span>About Me</span>
                 </a>
-                <a href="contact me.html" class="nav-link text-white">
+                <a href="#" class="nav-link text-white">
                     <div class="hover-bg"></div>
                     <span>Contact Me</span>
                 </a>
@@ -701,12 +704,22 @@
         
         <!-- Mobile Menu -->
         <div class="mobile-menu absolute top-full left-0 w-full md:hidden z-50">
-            <div class="container mx-auto py-4 px-4 flex flex-col">
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">My Digital Home</a>
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">My Books</a>
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">Explore My Writing</a>
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">About Me</a>
-                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">Contact Me</a>
+            <div class="container mx-auto py-4 px-4 flex flex-col space-y-2">
+                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
+                    My Digital Home
+                </a>
+                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
+                    My Books
+                </a>
+                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
+                    Explore My Writing
+                </a>
+                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
+                    About Me
+                </a>
+                <a href="#" class="mobile-nav-link text-white hover:text-pink-300 py-3 px-4 text-center uppercase tracking-wider font-medium text-sm">
+                    Contact Me
+                </a>
             </div>
         </div>
     </nav>
@@ -800,6 +813,15 @@
                 });
             }
             
+            // Close mobile menu when clicking a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('open');
+                    mobileMenu.classList.remove('open');
+                });
+            });
+            
             // Close mobile menu when clicking outside
             document.addEventListener('click', (e) => {
                 if (mobileMenu.classList.contains('open') && 
@@ -819,7 +841,7 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96455c86944459cf',t:'MTc1MzM4MDQ5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96456746566e8e92',t:'MTc1MzM4MDkzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </html>
     <div class="stars"></div>
     

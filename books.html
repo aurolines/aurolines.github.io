@@ -1,124 +1,497 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Books</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #fdfcfb, #e2d1c3);
-      color: #333;
-    }
-
-    header {
-      padding: 20px;
-      text-align: center;
-      background-color: #fff8f0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-      color: #5e3f2c;
-    }
-
-    .books-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px;
-      gap: 50px;
-    }
-
-    .book {
-      background-color: #ffffffcc;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-radius: 16px;
-      padding: 25px;
-      max-width: 800px;
-      width: 90%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .book img {
-      width: 180px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .book-details {
-      flex-grow: 1;
-    }
-
-    .book-details h2 {
-      margin: 0 0 10px;
-      color: #5e3f2c;
-    }
-
-    .book-details p {
-      margin: 0 0 15px;
-      line-height: 1.5;
-    }
-
-    .buy-links a {
-      text-decoration: none;
-      background-color: #5e3f2c;
-      color: white;
-      padding: 8px 14px;
-      border-radius: 6px;
-      margin-right: 10px;
-      transition: background 0.3s ease;
-      font-size: 0.9em;
-    }
-
-    .buy-links a:hover {
-      background-color: #7a4f35;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books | Author Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500&display=swap">
+    <style>
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            font-family: 'Lora', serif;
+            overflow-x: hidden;
+        }
+        
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .glassmorphism {
+            background: rgba(59, 10, 69, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(78, 39, 88, 0.3);
+        }
+        
+        .book-card {
+            transition: all 0.4s ease;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 182, 255, 0.15);
+        }
+        
+        .format-btn {
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .format-btn:hover, .format-btn.active {
+            background: linear-gradient(135deg, #3b0a45, #4e2758);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 182, 255, 0.3);
+        }
+        
+        .quote-section {
+            background: linear-gradient(45deg, #1a1a2e, #3b0a45, #4e2758, #3b0a45, #1a1a2e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .btn-glow {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 182, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: glowEffect 3s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes glowEffect {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmerEffect 3s infinite;
+        }
+        
+        @keyframes shimmerEffect {
+            0% { left: -100%; }
+            100% { left: 150%; }
+        }
+        
+        .book-cover {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .book-cover-placeholder {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(135deg, #3b0a45, #4e2758);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: serif;
+            text-align: center;
+        }
+        
+        .book-cover-container {
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Prevent word breaks */
+        .no-break {
+            white-space: nowrap;
+        }
+        
+        /* Futuristic UI elements */
+        .futuristic-border {
+            position: relative;
+        }
+        
+        .futuristic-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid rgba(255, 182, 255, 0.3);
+            border-radius: inherit;
+            pointer-events: none;
+            animation: borderPulse 4s infinite;
+        }
+        
+        @keyframes borderPulse {
+            0%, 100% { border-color: rgba(255, 182, 255, 0.3); }
+            50% { border-color: rgba(255, 182, 255, 0.7); }
+        }
+        
+        .futuristic-glow {
+            box-shadow: 0 0 15px rgba(255, 182, 255, 0.2);
+            animation: glowPulse 4s infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 182, 255, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(255, 182, 255, 0.4); }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .cosmic-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* Responsive text handling */
+        @media (max-width: 640px) {
+            .responsive-text {
+                hyphens: none;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+            }
+        }
+        
+        /* Futuristic scanner effect */
+        .scanner-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scanner-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff9edb, transparent);
+            animation: scanning 3s linear infinite;
+        }
+        
+        @keyframes scanning {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        
+        /* Cinematic text reveal */
+        .cinematic-text {
+            overflow: hidden;
+        }
+        
+        .cinematic-text span {
+            display: inline-block;
+            animation: textReveal 0.5s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes textReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>My Books</h1>
-  </header>
+    <!-- Cosmic Particles Background -->
+    <div class="cosmic-particles" id="particles"></div>
 
-  <div class="books-container">
+    <!-- Page Title Section -->
+    <header class="container mx-auto px-4 pt-16 pb-8 text-center fade-in">
+        <h1 class="title-font text-5xl md:text-6xl font-bold mb-4 tracking-wider cinematic-text" id="mainTitle">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-200 to-purple-300">My Books</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-purple-200 opacity-80 italic responsive-text">Journey through worlds crafted with ink and imagination</p>
+    </header>
 
-    <!-- Book 1: The Heart That Holds On -->
-    <div class="book">
-      <img src="the heart that holds on.jpg" alt="The Heart That Holds On cover" />
-      <div class="book-details">
-        <h2>The Heart That Holds On</h2>
-        <p>A poetic journey through heartbreak, hope, and healing. This book holds verses that once bled, then bloomed. Perfect for those who’ve loved deeply and learned to let go.</p>
-        <div class="buy-links">
-          <a href="https://amzn.in/d/9SmTbye" target="_blank">eBook (Amazon)</a>
-          <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds/" target="_blank">Paperback (Pothi)</a>
-          <a href="https://store.pothi.com/book/divyansh-maghanani-heart-holds-0/" target="_blank">Hardcover (Pothi)</a>
+    <!-- Book Cards Section -->
+    <section class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Book 1 -->
+            <div class="book-card glassmorphism rounded-xl overflow-hidden fade-in futuristic-border futuristic-glow" style="animation-delay: 0.2s">
+                <div class="book-cover-container scanner-effect">
+                    <div class="absolute inset-0 bg-gradient-to-b from-purple-900/30 to-pink-900/30 z-10"></div>
+                    <!-- Replace this with your actual book cover image -->
+                    <img src="#" alt="The Ink That Fades" class="book-cover">
+                    <!-- Fallback if image doesn't load -->
+                    <div class="book-cover-placeholder absolute inset-0">
+                        <div class="text-2xl mb-3 no-break">The Ink</div>
+                        <div class="text-2xl no-break">That Fades</div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="title-font text-2xl font-semibold mb-2 text-pink-100 no-break">The Ink That Fades</h3>
+                    <p class="text-xs uppercase tracking-wider text-purple-300 mb-3 no-break">Romance Novel</p>
+                    <p class="text-gray-300 mb-6 italic text-sm responsive-text">Words whispered between lovers, captured in pages that breathe with the rhythm of beating hearts.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="format-btn px-4 py-2 rounded-full text-sm border border-purple-400 text-purple-200 hover:text-white">Ebook</a>
+                        <a href="#" class="format-btn px-4 py-2 rounded-full text-sm border border-purple-400 text-purple-200 hover:text-white">Paperback</a>
+                        <a href="#" class="format-btn px-4 py-2 rounded-full text-sm border border-purple-400 text-purple-200 hover:text-white">Hardcover</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="book-card glassmorphism rounded-xl overflow-hidden fade-in futuristic-border futuristic-glow" style="animation-delay: 0.4s">
+                <div class="book-cover-container scanner-effect">
+                    <div class="absolute inset-0 bg-gradient-to-b from-purple-900/30 to-pink-900/30 z-10"></div>
+                    <!-- Replace this with your actual book cover image -->
+                    <img src="#" alt="The Heart That Holds On" class="book-cover">
+                    <!-- Fallback if image doesn't load -->
+                    <div class="book-cover-placeholder absolute inset-0">
+                        <div class="text-2xl mb-3 no-break">The Heart</div>
+                        <div class="text-2xl no-break">That Holds On</div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="title-font text-2xl font-semibold mb-2 text-pink-100 no-break">The Heart That Holds On</h3>
+                    <p class="text-xs uppercase tracking-wider text-purple-300 mb-3 no-break">Poetry, Heartbreak & Healing</p>
+                    <p class="text-gray-300 mb-6 italic text-sm responsive-text">Through storms and silence, some hearts refuse to let go, clinging to love like stars to the night sky.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="format-btn px-4 py-2 rounded-full text-sm border border-purple-400 text-purple-200 hover:text-white">Ebook</a>
+                        <a href="#" class="format-btn px-4 py-2 rounded-full text-sm border border-purple-400 text-purple-200 hover:text-white">Paperback</a>
+                        <a href="#" class="format-btn px-4 py-2 rounded-full text-sm border border-purple-400 text-purple-200 hover:text-white">Hardcover</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- Book 2: The Ink That Fades -->
-    <div class="book">
-      <img src="the-ink-that-fades.jpg.png" alt="The Ink That Fades cover" />
-      <div class="book-details">
-        <h2>The Ink That Fades</h2>
-        <p>A slow-burning romance written in heartbreak’s language. This novel explores love, memory, and everything left unsaid. For those who miss someone they never truly lost.</p>
-        <div class="buy-links">
-          <a href="https://amzn.in/d/cR37CGL" target="_blank">eBook (Amazon)</a>
-          <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank">Paperback (Pothi)</a>
-          <a href="https://store.pothi.com/book/divyansh-maghanani-ink-fades/" target="_blank">Hardcover (Pothi)</a>
+    <!-- Quote Divider Section -->
+    <section class="quote-section py-20 my-12 shimmer fade-in">
+        <div class="container mx-auto px-4 text-center">
+            <blockquote class="max-w-3xl mx-auto floating">
+                <p class="title-font text-2xl md:text-3xl lg:text-4xl italic font-light leading-relaxed text-pink-100 responsive-text">
+                    "The pages may end, but the story doesn't."
+                </p>
+            </blockquote>
         </div>
-      </div>
-    </div>
+    </section>
 
-  </div>
-</body>
+    <!-- Behind the Book Section -->
+    <section class="container mx-auto px-4 py-12 fade-in">
+        <div class="max-w-3xl mx-auto glassmorphism rounded-2xl p-8 futuristic-border">
+            <h2 class="title-font text-3xl mb-6 text-center text-pink-100 no-break">Behind the Books</h2>
+            <p class="text-gray-300 mb-4 leading-relaxed responsive-text">
+                Each story is a fragment of my soul, carefully woven into words. I write in the quiet hours when the world sleeps and dreams speak loudest. These books are not merely tales of love, but explorations of the human heart in all its complexity.
+            </p>
+            <p class="text-gray-300 leading-relaxed responsive-text">
+                When ink meets paper, magic happens. I invite you to lose yourself in these worlds I've created, to find pieces of yourself hidden between the lines, and to remember that in stories, as in life, love is the most powerful magic of all.
+            </p>
+        </div>
+    </section>
+
+    <!-- Author's Note Section -->
+    <section class="container mx-auto px-4 py-12 fade-in">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="title-font text-3xl mb-8 text-center text-pink-100 no-break">Author's Note</h2>
+            <div class="glassmorphism rounded-2xl p-8 futuristic-border scanner-effect">
+                <div class="flex flex-col space-y-6">
+                    <div class="border-l-4 border-pink-400 pl-6 py-2">
+                        <p class="text-gray-300 italic leading-relaxed no-break">
+                            Dear Reader,
+                        </p>
+                        <p class="text-gray-300 mt-4 leading-relaxed responsive-text">
+                            Thank you for visiting my little corner of the literary world. The words on these pages are reflections of my journey, my dreams, and the stories that wouldn't let me rest until they were told.
+                        </p>
+                        <p class="text-gray-300 mt-4 leading-relaxed responsive-text">
+                            I hope these tales find a home in your heart as they did in mine.
+                        </p>
+                        <p class="text-pink-200 mt-6 text-right font-semibold title-font no-break">
+                            With gratitude,
+                        </p>
+                        <p class="text-pink-200 text-right italic title-font no-break">
+                            [Author's Signature]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Buttons -->
+    <section class="container mx-auto px-4 py-12 text-center fade-in">
+        <div class="flex flex-col md:flex-row justify-center gap-6">
+            <a href="index.html" class="btn-glow px-8 py-4 rounded-full bg-gradient-to-r from-purple-900 to-pink-900 text-white font-medium hover:from-purple-800 hover:to-pink-800 transition-all duration-300 shadow-lg shadow-purple-900/30 futuristic-glow">
+                Back to Home
+            </a>
+            <a href="#" class="btn-glow px-8 py-4 rounded-full bg-gradient-to-r from-pink-900 to-purple-900 text-white font-medium hover:from-pink-800 hover:to-purple-800 transition-all duration-300 shadow-lg shadow-purple-900/30 futuristic-glow">
+                Read My Writing
+            </a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Format buttons functionality
+            const formatBtns = document.querySelectorAll('.format-btn');
+            formatBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // Prevent default only if href is # (placeholder)
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                    
+                    const siblings = this.parentElement.querySelectorAll('.format-btn');
+                    siblings.forEach(sibling => sibling.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Enhanced scroll reveal animation with recurring effect
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Make animation recur every time element enters viewport
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -10% 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Handle image loading errors
+            const bookCovers = document.querySelectorAll('.book-cover');
+            bookCovers.forEach(cover => {
+                cover.addEventListener('error', function() {
+                    // If image fails to load, show the placeholder
+                    this.style.display = 'none';
+                    this.nextElementSibling.style.display = 'flex';
+                });
+                
+                cover.addEventListener('load', function() {
+                    // If image loads successfully, hide the placeholder
+                    this.nextElementSibling.style.display = 'none';
+                });
+            });
+            
+            // Create cosmic particles
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 30 : 60;
+            
+            for (let i = 0; i < particleCount; i++) {
+                createParticle();
+            }
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 1-3px
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // Animation
+                const duration = Math.random() * 20 + 10;
+                particle.style.animation = `floating ${duration}s ease-in-out infinite`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Cinematic text reveal animation
+            function animateText(elementId) {
+                const element = document.getElementById(elementId);
+                if (!element) return;
+                
+                const text = element.textContent;
+                element.textContent = '';
+                
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = text[i];
+                    span.style.animationDelay = `${i * 0.05}s`;
+                    element.appendChild(span);
+                }
+            }
+            
+            // Animate main title
+            setTimeout(() => {
+                animateText('mainTitle');
+            }, 500);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9642eb41e11ae14a',t:'MTc1MzM1NDg4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

@@ -391,7 +391,6 @@
 </head>
 <body class="px-4 py-8 md:px-8 lg:px-16 relative">
     <!-- Cosmic background elements -->
-    <!-- Stars Background (Reduced) -->
    <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -415,12 +414,7 @@
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background: #000;
-            linear-gradient(to bottom, #1a1a2e, #3b0a45, #4e2758);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
+           background: linear-gradient(to bottom, #1a1a2e, #3b0a45, #4e2758);
             min-height: 100vh;
         }
 
@@ -595,8 +589,8 @@
 </head>
 <body>
     <!-- Super simplified navigation bar -->
-    <nav class="navbar fixed w-full z-50 px-3 py-2 md:px-4 md:py-4 text-white">
-        <div class="container mx-auto flex justify-between items-center">
+    <nav class="fixed w-full z-50 px-3 text-white h-12">
+       <div class="flex items-center justify-between h-full w-full">
             <!-- Logo -->
             <a href="#" class="logo">
                 <span class="logo-text text-xl md:text-2xl">AUROLINES</span>

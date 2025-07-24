@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Connect | Author Name</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --deep-blue: #1a1a2e;
+            --accent-purple: #3b0a45;
+            --accent-purple-light: #4e2758;
+            --glow-pink: #e0aaff;
+            --glow-lavender: #cdb4db;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--deep-blue);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(78, 39, 88, 0.3) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(59, 10, 69, 0.3) 0%, transparent 30%);
+        }
+        
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .glass-card {
+            background: rgba(59, 10, 69, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(224, 170, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .glass-card:hover {
+            box-shadow: 0 8px 32px rgba(224, 170, 255, 0.2);
+            border: 1px solid rgba(224, 170, 255, 0.2);
+        }
+        
+        .contact-card {
+            background: rgba(59, 10, 69, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(224, 170, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(224, 170, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.8s ease;
+            opacity: 0;
+        }
+        
+        .contact-card:hover::before {
+            animation: shine 1.5s forwards;
+        }
+        
+        @keyframes shine {
+            0% {
+                transform: translateX(-300%) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateX(300%) rotate(45deg);
+                opacity: 0;
+            }
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(224, 170, 255, 0.3);
+            border: 1px solid rgba(224, 170, 255, 0.3);
+        }
+        
+        .glass-button {
+            background: rgba(78, 39, 88, 0.4);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(224, 170, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .glass-button:hover {
+            background: rgba(78, 39, 88, 0.6);
+            border: 1px solid rgba(224, 170, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(224, 170, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .title-glow {
+            text-shadow: 0 0 10px rgba(224, 170, 255, 0.5);
+            position: relative;
+        }
+        
+        .title-glow::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--glow-pink), var(--glow-lavender), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -100px 0; }
+            100% { background-position: 100px 0; }
+        }
+        
+        .poetic-text {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .poetic-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(224, 170, 255, 0.2), transparent);
+            animation: shimmerText 3s infinite;
+        }
+        
+        @keyframes shimmerText {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .nav-button {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(224, 170, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .nav-button:hover::after {
+            left: 100%;
+        }
+        
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .contact-icon {
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 5px rgba(224, 170, 255, 0.3));
+        }
+        
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px rgba(224, 170, 255, 0.6));
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 5px rgba(224, 170, 255, 0.5);
+        }
+        
+        .futuristic-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glow-pink), transparent);
+            position: relative;
+        }
+        
+        .futuristic-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--glow-lavender), transparent);
+            animation: linePulse 3s infinite;
+        }
+        
+        @keyframes linePulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .cosmic-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: rgba(224, 170, 255, 0.7);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(20px);
+                opacity: 0;
+            }
+        }
+        
+        .hexagon {
+            position: relative;
+            width: 60px;
+            height: 34.64px;
+            background-color: rgba(224, 170, 255, 0.1);
+            margin: 17.32px 0;
+            border-left: solid 1px rgba(224, 170, 255, 0.3);
+            border-right: solid 1px rgba(224, 170, 255, 0.3);
+        }
+
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+        }
+
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 17.32px solid rgba(224, 170, 255, 0.1);
+        }
+
+        .hexagon:after {
+            top: 100%;
+            border-top: 17.32px solid rgba(224, 170, 255, 0.1);
+        }
+        
+        .hexagon-container {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .pulse-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(224, 170, 255, 0.1);
+            animation: pulse 4s infinite;
+            z-index: -1;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+        }
+        
+        .contact-method-text {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover .contact-method-text {
+            transform: translateX(5px);
+        }
+        
+        /* Literary Universe styles */
+        .literary-universe {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.9; }
+        }
+        
+        .quote-bubble {
+            position: absolute;
+            padding: 12px 16px;
+            border-radius: 15px;
+            background: rgba(78, 39, 88, 0.4);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(224, 170, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            max-width: 280px;
+            animation: float-quote 12s infinite linear;
+            opacity: 0;
+        }
+        
+        @keyframes float-quote {
+            0% {
+                transform: translateY(100%) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100%) translateX(20px);
+                opacity: 0;
+            }
+        }
+        
+        .about-button {
+            position: relative;
+            overflow: hidden;
+            animation: button-pulse 2s infinite ease-in-out;
+        }
+        
+        @keyframes button-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(224, 170, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(224, 170, 255, 0.6);
+            }
+        }
+    </style>
+</head>
+<body class="px-4 py-8 md:px-8 lg:px-16 relative">
+    <!-- Cosmic background elements -->
+    <div class="cosmic-particles">
+        <!-- Particles will be added by JS -->
+    </div>
+    
+    <!-- Decorative hexagons -->
+    <div class="hexagon-container" style="top: 15%; left: 5%;">
+        <div class="hexagon"></div>
+    </div>
+    <div class="hexagon-container" style="top: 70%; right: 8%;">
+        <div class="hexagon"></div>
+    </div>
+    
+    <!-- Pulse circles -->
+    <div class="pulse-circle" style="width: 300px; height: 300px; top: 20%; right: 10%;"></div>
+    <div class="pulse-circle" style="width: 200px; height: 200px; bottom: 15%; left: 5%;"></div>
+    
+    <div class="max-w-6xl mx-auto relative">
+        <!-- Page Title -->
+        <div class="text-center mb-16 mt-8 fade-up">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold title-glow mb-4">Let's Connect</h1>
+        </div>
+        
+        <!-- Poetic Prompt -->
+        <div class="max-w-2xl mx-auto mb-16 fade-up" style="transition-delay: 0.2s;">
+            <div class="glass-card rounded-2xl p-6 md:p-8">
+                <div class="poetic-text">
+                    <p class="text-xl md:text-2xl italic serif text-center text-[#e0aaff]">
+                        "Words brought us here, maybe they can take us further."
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Futuristic divider -->
+        <div class="futuristic-line w-full my-12 fade-up" style="transition-delay: 0.3s;"></div>
+        
+        <!-- Contact Methods Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+            <!-- Email Contact Card -->
+            <div class="fade-up" style="transition-delay: 0.4s;">
+                <a href="divyanshmaghnani5@gmail.com" class="block">
+                    <div class="contact-card rounded-2xl p-6 h-full flex items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-[#3b0a45] mr-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div class="contact-method-text">
+                            <h3 class="text-xl font-semibold mb-1 serif glow-text">Email</h3>
+                            <p class="text-[#e0aaff]">divyanshmaghnani5@gmail.com</p>
+                            <p class="text-sm text-gray-300 mt-2">For inquiries and collaborations</p>
+                        </div>
+                        <div class="ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#e0aaff] opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Instagram Contact Card -->
+            <div class="fade-up" style="transition-delay: 0.5s;">
+                <a href="https://www.instagram.com/divyansh_3116/" class="block">
+                    <div class="contact-card rounded-2xl p-6 h-full flex items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-[#3b0a45] mr-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 contact-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-method-text">
+                            <h3 class="text-xl font-semibold mb-1 serif glow-text">Instagram</h3>
+                            <p class="text-[#e0aaff]">@divyansh_3116</p>
+                            <p class="text-sm text-gray-300 mt-2">Daily updates and behind the scenes</p>
+                        </div>
+                        <div class="ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#e0aaff] opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- LinkedIn Contact Card -->
+            <div class="fade-up" style="transition-delay: 0.6s;">
+                <a href="https://www.linkedin.com/in/divyansh-maghanani" class="block">
+                    <div class="contact-card rounded-2xl p-6 h-full flex items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-[#3b0a45] mr-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 contact-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-method-text">
+                            <h3 class="text-xl font-semibold mb-1 serif glow-text">LinkedIn</h3>
+                            <p class="text-[#e0aaff]">Divyansh Maghanani</p>
+                            <p class="text-sm text-gray-300 mt-2">Professional connections and updates</p>
+                        </div>
+                        <div class="ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#e0aaff] opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- WhatsApp Contact Card -->
+            <div class="fade-up" style="transition-delay: 0.7s;">
+                <a href="https://wa.me/9351093952" class="block">
+                    <div class="contact-card rounded-2xl p-6 h-full flex items-center">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-[#3b0a45] mr-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 contact-icon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-method-text">
+                            <h3 class="text-xl font-semibold mb-1 serif glow-text">WhatsApp</h3>
+                            <p class="text-[#e0aaff]">+91 9351093952</p>
+                            <p class="text-sm text-gray-300 mt-2">For quick conversations</p>
+                        </div>
+                        <div class="ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#e0aaff] opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Literary Universe Section -->
+        <div class="max-w-4xl mx-auto mb-16 fade-up" style="transition-delay: 0.8s;">
+            <div class="glass-card rounded-2xl p-6 md:p-8">
+                <h3 class="text-2xl md:text-3xl font-semibold serif glow-text text-center mb-4">My Literary Universe</h3>
+                
+                <div class="literary-universe relative h-40 md:h-48 mb-6" id="literaryUniverse">
+                    <!-- Stars will be added by JS -->
+                    <!-- Quote bubbles will be added by JS -->
+                </div>
+                
+                <div class="text-center">
+                    <a href="#" class="glass-button about-button py-3 px-8 rounded-full inline-block">
+                        About Me
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8 mb-16 fade-up" style="transition-delay: 0.9s;">
+            <a href="index.html" class="glass-button nav-button py-3 px-8 rounded-full text-center">
+                ← Back to Home
+            </a>
+            <a href="explore my writing.html" class="glass-button nav-button py-3 px-8 rounded-full text-center">
+                Explore My Writing →
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Create cosmic particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const cosmicParticles = document.querySelector('.cosmic-particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const size = Math.random() * 3 + 1;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 10;
+                
+                particle.style.left = `${posX}%`;
+                particle.style.bottom = `${-10}%`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.opacity = Math.random() * 0.5 + 0.3;
+                particle.style.animation = `float ${duration}s ${delay}s infinite linear`;
+                
+                cosmicParticles.appendChild(particle);
+            }
+            
+            // Create stars for literary universe
+            const literaryUniverse = document.getElementById('literaryUniverse');
+            const starCount = 30;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const size = Math.random() * 2.5 + 1;
+                const delay = Math.random() * 4;
+                
+                star.style.left = `${posX}%`;
+                star.style.top = `${posY}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${delay}s`;
+                
+                literaryUniverse.appendChild(star);
+            }
+            
+            // Create quote bubbles
+            const quotes = [
+                "In the silence between heartbeats, I found you.",
+                "Stars don't ask permission to shine.",
+                "Time is just a story we tell ourselves.",
+                "The moon knows all my secrets.",
+                "Some dreams are too wild to be caged in reality."
+            ];
+            
+            quotes.forEach((quote, index) => {
+                const bubble = document.createElement('div');
+                bubble.classList.add('quote-bubble');
+                bubble.innerHTML = `<p class="text-sm md:text-base italic serif">${quote}</p>`;
+                
+                // Position and animation
+                const posX = 15 + (index * 15);
+                const delay = index * 2.5;
+                const duration = 8 + Math.random() * 3;
+                
+                bubble.style.left = `${posX}%`;
+                bubble.style.bottom = `-50px`;
+                bubble.style.animationDuration = `${duration}s`;
+                bubble.style.animationDelay = `${delay}s`;
+                
+                literaryUniverse.appendChild(bubble);
+            });
+            
+            // Intersection Observer for fade-up animations
+            const fadeElements = document.querySelectorAll('.fade-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9643f390535e91b0',t:'MTc1MzM2NTcwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

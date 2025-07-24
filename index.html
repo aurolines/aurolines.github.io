@@ -510,123 +510,8 @@
             opacity: 1;
         }
         
-        /* Mobile menu - completely redesigned */
-        .mobile-menu-drawer {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(15, 15, 26, 0.98), rgba(26, 26, 46, 0.95));
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 100;
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
-            overflow-y: auto;
-        }
-        
-        .mobile-menu-drawer.open {
-            right: 0;
-        }
-        
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease;
-        }
-        
-        .mobile-menu-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .mobile-menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 1rem;
-            border-bottom: 1px solid rgba(224, 170, 255, 0.2);
-        }
-        
-        .mobile-menu-close {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            background: rgba(224, 170, 255, 0.1);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-menu-close:hover {
-            background: rgba(224, 170, 255, 0.2);
-        }
-        
-        .mobile-menu-close svg {
-            width: 18px;
-            height: 18px;
-            stroke: white;
-            stroke-width: 2;
-        }
-        
-        .mobile-menu-content {
-            padding: 1.5rem 1rem;
-        }
-        
-        .mobile-nav-link {
-            position: relative;
-            display: block;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            background: rgba(224, 170, 255, 0.05);
-        }
-        
-        .mobile-nav-link:hover {
-            background: rgba(224, 170, 255, 0.1);
-            color: var(--accent-pink);
-            transform: translateX(5px);
-        }
-        
-        .mobile-nav-link::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent-pink), var(--accent-lavender));
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-            border-top-left-radius: 6px;
-            border-bottom-left-radius: 6px;
-        }
-        
-        .mobile-nav-link:hover::before {
-            transform: scaleY(1);
-        }
-        
-        .hamburger {
+        /* Hamburger button */
+        .hamburger-btn {
             width: 40px;
             height: 40px;
             display: flex;
@@ -635,37 +520,111 @@
             align-items: center;
             cursor: pointer;
             position: relative;
-            border-radius: 50%;
-            transition: all 0.3s ease;
+            z-index: 1000;
             background: rgba(224, 170, 255, 0.1);
-            z-index: 50;
-        }
-        
-        .hamburger::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
             border-radius: 50%;
-            border: 1px solid rgba(224, 170, 255, 0.3);
-            opacity: 0;
             transition: all 0.3s ease;
         }
         
-        .hamburger:hover::before {
-            opacity: 1;
-            transform: scale(1.1);
+        .hamburger-btn:hover {
+            background: rgba(224, 170, 255, 0.2);
         }
         
-        .hamburger div {
-            height: 2px;
+        .hamburger-btn span {
+            display: block;
             width: 20px;
+            height: 2px;
             background: linear-gradient(to right, var(--accent-pink), var(--accent-lavender));
             margin: 2px 0;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
             border-radius: 2px;
+        }
+        
+        .hamburger-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+        
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+        
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .mobile-menu-link {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: rgba(224, 170, 255, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mobile-menu-link:hover {
+            background: rgba(224, 170, 255, 0.2);
+            color: var(--accent-pink);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent-pink), var(--accent-lavender));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: right;
+        }
+        
+        .mobile-menu-link:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
         }
         
         /* Particle effect */
@@ -765,165 +724,137 @@
                 </a>
             </div>
             
-            <!-- Mobile Hamburger -->
+            <!-- Hamburger Button -->
             <div class="md:hidden">
-                <button class="hamburger focus:outline-none" id="hamburger-button" aria-label="Menu">
-                    <div class="line1 transition-all"></div>
-                    <div class="line2 transition-all"></div>
-                    <div class="line3 transition-all"></div>
-                </button>
+                <div class="hamburger-btn" id="hamburger-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </nav>
     
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay md:hidden" id="mobile-menu-overlay"></div>
-    
-    <!-- Mobile Menu Drawer -->
-    <div class="mobile-menu-drawer md:hidden" id="mobile-menu-drawer">
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-particles" id="mobile-particles"></div>
-        
-        <div class="mobile-menu-header">
-            <div class="text-white font-bold text-lg">Menu</div>
-            <button class="mobile-menu-close" id="mobile-menu-close">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-        
-        <div class="mobile-menu-content">
-            <a href="#" class="mobile-nav-link">My Digital Home</a>
-            <a href="#" class="mobile-nav-link">My Books</a>
-            <a href="#" class="mobile-nav-link">Explore My Writing</a>
-            <a href="#" class="mobile-nav-link">About Me</a>
-            <a href="#" class="mobile-nav-link">Contact Me</a>
+        <div class="mobile-menu-links">
+            <a href="#" class="mobile-menu-link">My Digital Home</a>
+            <a href="#" class="mobile-menu-link">My Books</a>
+            <a href="#" class="mobile-menu-link">Explore My Writing</a>
+            <a href="#" class="mobile-menu-link">About Me</a>
+            <a href="#" class="mobile-menu-link">Contact Me</a>
         </div>
     </div>
     
     <script>
-        // Create particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            // Fewer particles on mobile for better performance
-            const isMobile = window.innerWidth < 768;
-            const particleCount = isMobile ? 5 : 10;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random size between 1-3px
-                const size = Math.random() * 2 + 1;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random animation duration
-                const duration = Math.random() * 10 + 5;
-                particle.style.animationDuration = `${duration}s`;
-                
-                // Random animation delay
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Create mobile menu particles
-        function createMobileParticles() {
-            const particlesContainer = document.getElementById('mobile-particles');
-            const particleCount = 15;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('mobile-particle');
-                
-                // Random size between 2-6px
-                const size = Math.random() * 4 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random opacity
-                particle.style.opacity = Math.random() * 0.5 + 0.1;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Animate mobile particles
-        function animateMobileParticles() {
-            const particles = document.querySelectorAll('.mobile-particle');
-            
-            particles.forEach((particle) => {
-                // Initial position
-                let x = parseFloat(particle.style.left);
-                let y = parseFloat(particle.style.top);
-                
-                // Random direction and speed
-                const speedX = (Math.random() - 0.5) * 0.1;
-                const speedY = (Math.random() - 0.5) * 0.1;
-                
-                function moveParticle() {
-                    // Update position
-                    x += speedX;
-                    y += speedY;
-                    
-                    // Wrap around edges
-                    if (x > 100) x = 0;
-                    if (x < 0) x = 100;
-                    if (y > 100) y = 0;
-                    if (y < 0) y = 100;
-                    
-                    // Apply new position
-                    particle.style.left = `${x}%`;
-                    particle.style.top = `${y}%`;
-                    
-                    requestAnimationFrame(moveParticle);
-                }
-                
-                moveParticle();
-            });
-        }
-        
         document.addEventListener('DOMContentLoaded', function() {
+            // Create particles
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const isMobile = window.innerWidth < 768;
+                const particleCount = isMobile ? 5 : 10;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    const size = Math.random() * 2 + 1;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    const duration = Math.random() * 10 + 5;
+                    particle.style.animationDuration = `${duration}s`;
+                    
+                    particle.style.animationDelay = `${Math.random() * 5}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Create mobile menu particles
+            function createMobileParticles() {
+                const particlesContainer = document.getElementById('mobile-particles');
+                const particleCount = 15;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('mobile-particle');
+                    
+                    const size = Math.random() * 4 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    particle.style.opacity = Math.random() * 0.5 + 0.1;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Animate mobile particles
+            function animateMobileParticles() {
+                const particles = document.querySelectorAll('.mobile-particle');
+                
+                particles.forEach((particle) => {
+                    let x = parseFloat(particle.style.left);
+                    let y = parseFloat(particle.style.top);
+                    
+                    const speedX = (Math.random() - 0.5) * 0.1;
+                    const speedY = (Math.random() - 0.5) * 0.1;
+                    
+                    function moveParticle() {
+                        x += speedX;
+                        y += speedY;
+                        
+                        if (x > 100) x = 0;
+                        if (x < 0) x = 100;
+                        if (y > 100) y = 0;
+                        if (y < 0) y = 100;
+                        
+                        particle.style.left = `${x}%`;
+                        particle.style.top = `${y}%`;
+                        
+                        requestAnimationFrame(moveParticle);
+                    }
+                    
+                    moveParticle();
+                });
+            }
+            
             createParticles();
             createMobileParticles();
             animateMobileParticles();
             
-            const hamburger = document.getElementById('hamburger-button');
-            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-            const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
-            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            // Mobile menu toggle
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
             
-            // Open mobile menu
-            hamburger.addEventListener('click', () => {
-                mobileMenuOverlay.classList.add('open');
-                mobileMenuDrawer.classList.add('open');
-                document.body.style.overflow = 'hidden';
+            hamburgerBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                
+                // Toggle body scroll
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
             });
             
-            // Close mobile menu
-            function closeMenu() {
-                mobileMenuOverlay.classList.remove('open');
-                mobileMenuDrawer.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-            
-            mobileMenuClose.addEventListener('click', closeMenu);
-            mobileMenuOverlay.addEventListener('click', closeMenu);
-            
             // Close mobile menu when clicking a link
-            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', closeMenu);
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
             });
             
             // Scroll Effect for Navbar
@@ -970,16 +901,9 @@
                     });
                 });
             }
-            
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                if (window.innerWidth >= 768 && mobileMenuDrawer.classList.contains('open')) {
-                    closeMenu();
-                }
-            });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96457e82514454d1',t:'MTc1MzM4MTg4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9645879ae58354a2',t:'MTc1MzM4MjI1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
     <div class="stars"></div>
     

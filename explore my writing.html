@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore My Writing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-primary: #1a1a2e;
+            --accent-pink: #ff6b97;
+            --accent-lavender: #c8a2c8;
+            --accent-wine: #4e2758;
+            --accent-deep-purple: #3b0a45;
+            --neon-glow: 0 0 10px rgba(255, 107, 151, 0.7), 0 0 20px rgba(255, 107, 151, 0.5), 0 0 30px rgba(255, 107, 151, 0.3);
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--bg-primary), #2a1a3a, #1a1a2e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .glass-card {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .glass-card:hover::before {
+            left: 100%;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(78, 39, 88, 0.5), 0 0 15px rgba(255, 107, 151, 0.5);
+            border-color: rgba(255, 107, 151, 0.3);
+        }
+        
+        .btn-glow {
+            background: rgba(26, 26, 46, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-family: 'Playfair Display', serif;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+        
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-pink), transparent);
+            transition: all 0.4s ease;
+        }
+        
+        .btn-glow:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-deep-purple), var(--accent-wine), var(--accent-lavender));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+        
+        .btn-glow:hover:before {
+            opacity: 1;
+        }
+        
+        .btn-glow:hover {
+            box-shadow: var(--neon-glow);
+            transform: translateY(-3px);
+            letter-spacing: 1.5px;
+        }
+        
+        .btn-glow:hover::after {
+            height: 3px;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.8s cubic-bezier(0.19, 1, 0.22, 1), transform 1.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.05) 50%, 
+                rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .category-card {
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-lavender));
+            transition: width 0.5s ease;
+        }
+        
+        .category-card:hover::after {
+            width: 100%;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(200, 162, 200, 0.4);
+        }
+        
+        .category-card:hover h3 {
+            color: var(--accent-pink);
+            text-shadow: 0 0 5px rgba(255, 107, 151, 0.5);
+        }
+        
+        .quote-scroll {
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .quote-scroll-inner {
+            display: inline-block;
+            animation: scrollText 30s linear infinite;
+        }
+        
+        @keyframes scrollText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.5;
+            animation: twinkle 5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cinematic-text {
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+        
+        .card-content {
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-pink), transparent);
+        }
+        
+        /* Prevent text breaks */
+        .no-break {
+            white-space: nowrap;
+        }
+        
+        /* Futuristic elements */
+        .futuristic-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-lavender), transparent);
+            width: 80%;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .futuristic-line::before {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent-pink);
+            top: -2px;
+            left: calc(50% - 2.5px);
+            box-shadow: 0 0 10px var(--accent-pink);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 5px rgba(255, 107, 151, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-text:hover {
+            text-shadow: 0 0 10px rgba(255, 107, 151, 0.9);
+        }
+        
+        /* Cinematic vignette effect */
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- Cinematic vignette effect -->
+    <div class="vignette"></div>
+    
+    <!-- Stars background -->
+    <div id="stars" class="fixed inset-0 z-0 pointer-events-none"></div>
+    
+    <div class="container mx-auto px-4 py-12 relative z-1">
+        <!-- Page Title Section -->
+        <section class="min-h-screen flex flex-col justify-center items-center text-center mb-20 fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-wider text-white text-shadow glow-text">Explore My Writing</h1>
+            <p class="text-xl md:text-2xl italic text-gray-300 max-w-2xl">Where emotions find their voice in verses and prose.</p>
+            <div class="mt-12 w-24 h-1 bg-gradient-to-r from-purple-500 via-pink-400 to-purple-500 rounded-full"></div>
+            <div class="futuristic-line mt-16"></div>
+        </section>
+        
+        <!-- Featured Excerpts Section -->
+        <section class="mb-32">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in text-shadow cinematic-text">Featured <span class="text-pink-300">Excerpts</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 fade-in">
+                    <div class="card-content">
+                        <h3 class="text-2xl font-bold card-title text-pink-300">The Words I Never Said</h3>
+                        <p class="text-gray-300 italic mb-6">"In the silence between heartbeats, I wrote your name a thousand times, each letter a prayer I was too afraid to speak."</p>
+                    </div>
+                    <a href="#" class="btn-glow inline-block">Read More</a>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="glass-card p-8 fade-in" style="transition-delay: 0.2s;">
+                    <div class="card-content">
+                        <h3 class="text-2xl font-bold card-title text-lavender-300">A Place I Could Never Stay</h3>
+                        <p class="text-gray-300 italic mb-6">"You were a season I begged the sky to keep, but the wind knew better — it never let you settle in my soul."</p>
+                    </div>
+                    <a href="#" class="btn-glow inline-block">Read More</a>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="glass-card p-8 fade-in" style="transition-delay: 0.4s;">
+                    <div class="card-content">
+                        <h3 class="text-2xl font-bold card-title text-purple-300">Paper Moons & Quiet Cries</h3>
+                        <p class="text-gray-300 italic mb-6">"I folded every memory into paper moons, hoping they'd light the parts of me you left in the dark."</p>
+                    </div>
+                    <a href="#" class="btn-glow inline-block">Read More</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Moodboard Divider -->
+        <section class="py-16 mb-32 relative overflow-hidden fade-in">
+            <div class="absolute inset-0 shimmer"></div>
+            <div class="quote-scroll py-8 bg-opacity-10 bg-white">
+                <div class="quote-scroll-inner text-2xl md:text-3xl italic text-shadow">
+                    "Some words aren't meant to be spoken. They're meant to be felt." &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    "Some words aren't meant to be spoken. They're meant to be felt." &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </section>
+        
+        <!-- Writing Categories Section -->
+        <section class="mb-32">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center fade-in text-shadow cinematic-text">Writing <span class="text-pink-300">Categories</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <div class="category-card glass-card p-8 text-center fade-in">
+                    <h3 class="text-2xl font-bold mb-3 text-pink-300 no-break">Poetry</h3>
+                    <p class="text-gray-300">Raw, romantic, and quietly aching.</p>
+                    <a href="#" class="btn-glow inline-block mt-6">Explore</a>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="category-card glass-card p-8 text-center fade-in" style="transition-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-3 text-lavender-300 no-break">Short Letters</h3>
+                    <p class="text-gray-300">Words I wish I had the courage to send.</p>
+                    <a href="#" class="btn-glow inline-block mt-6">Explore</a>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card glass-card p-8 text-center fade-in" style="transition-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold mb-3 text-purple-300 no-break">Micro Tales</h3>
+                    <p class="text-gray-300">Stories that linger long after the last word.</p>
+                    <a href="#" class="btn-glow inline-block mt-6">Explore</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Reader Connection CTA -->
+        <section class="py-20 text-center fade-in">
+            <div class="futuristic-line mb-16"></div>
+            <h2 class="text-2xl md:text-3xl italic mb-10 text-shadow">If my words have found a place in you, let's stay connected.</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <a href="#" class="btn-glow">Go to Books</a>
+                <a href="#" class="btn-glow">Contact Me</a>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150; // More stars for cinematic effect
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 2.5;
+                
+                // Random animation delay
+                const delay = Math.random() * 5;
+                
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${delay}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Fade-in animation on scroll
+        function handleScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
+        // Parallax effect for stars
+        function parallaxEffect() {
+            document.addEventListener('mousemove', (e) => {
+                const stars = document.getElementById('stars');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                stars.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            });
+        }
+        
+        // Ensure text doesn't break on resize
+        function preventTextBreak() {
+            const resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    const cardContents = entry.target.querySelectorAll('.card-content');
+                    cardContents.forEach(content => {
+                        const height = content.scrollHeight;
+                        if (height > content.clientHeight) {
+                            content.style.minHeight = `${height + 20}px`;
+                        }
+                    });
+                }
+            });
+            
+            document.querySelectorAll('.glass-card').forEach(card => {
+                resizeObserver.observe(card);
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            handleScrollAnimations();
+            parallaxEffect();
+            preventTextBreak();
+            
+            // Add smooth scroll for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId !== '#') {
+                        document.querySelector(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'964379a4c65e7f3e',t:'MTc1MzM2MDcxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

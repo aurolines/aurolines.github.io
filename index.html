@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* your custom styles (same as before) */
         :root {
             --navy: #1a1a2e;
             --plum: #3b0a45;
@@ -16,141 +16,563 @@
             --soft-pink: #ffd6eb;
             --pale-lavender: #e6d7f2;
         }
-        /* ... all your CSS remains unchanged ... */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--navy), var(--plum), var(--mauve));
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, blockquote {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(78, 39, 88, 0.6), rgba(26, 26, 46, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section {
+            background: radial-gradient(circle at center, rgba(59, 10, 69, 0.7), rgba(26, 26, 46, 0.9));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .btn-primary {
+            background-color: var(--soft-pink);
+            color: var(--navy);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            background-color: #ffbfdd;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 214, 235, 0.4);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.8s;
+            opacity: 0;
+        }
+        
+        .btn-primary:hover::after {
+            left: 100%;
+            opacity: 1;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--soft-pink);
+            color: var(--soft-pink);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 214, 235, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 214, 235, 0.2);
+        }
+        
+        .btn-secondary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(45deg);
+            transition: all 0.8s;
+            opacity: 0;
+        }
+        
+        .btn-secondary:hover::after {
+            left: 100%;
+            opacity: 1;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #ffbfdd, #e6d7f2);
+            color: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .book-cover {
+            height: 280px;
+            background: linear-gradient(45deg, var(--plum), var(--mauve));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            will-change: transform;
+        }
+        
+        .glass-card:hover .book-cover img {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .book-cover {
+                height: 220px;
+            }
+        }
+        
+        /* Scroll progress indicator */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            z-index: 9999;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--soft-pink), var(--pale-lavender));
+            width: 0%;
+            box-shadow: 0 0 10px rgba(255, 214, 235, 0.7);
+            will-change: width;
+        }
+        
+        /* Cinematic bars */
+        .cinematic-bars {
+            position: fixed;
+            width: 100%;
+            height: 0;
+            background-color: black;
+            z-index: 998;
+            transition: height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            will-change: height;
+        }
+        
+        .cinematic-top {
+            top: 0;
+        }
+        
+        .cinematic-bottom {
+            bottom: 0;
+        }
+        
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            will-change: transform, opacity;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Text animation */
+        .animated-text {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            will-change: transform, opacity;
+        }
+        
+        .animated-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* For spaces in animated text */
+        .animated-space {
+            display: inline-block;
+            width: 0.25em;
+        }
+        
+        /* Stars background (optimized) */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
-    <!-- existing HTML content remains unchanged --><!-- your main sections: stars, scroll bar, hero, quote, books, about, cta, footer -->
+    <!-- Stars Background (Reduced) -->
+    <div class="stars"></div>
+    
+    <!-- Scroll Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- Cinematic Bars -->
+    <div class="cinematic-bars cinematic-top"></div>
+    <div class="cinematic-bars cinematic-bottom"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center justify-center px-4 py-20 relative" id="hero">
+        <div class="container mx-auto text-center max-w-3xl reveal">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">My Digital Home</h1>
+            <h2 class="text-xl md:text-2xl mb-3 text-pale-lavender">Hi, I'm Divyansh Maghanani</h2>
+            <p class="text-lg md:text-xl mb-8 text-opacity-90 text-white">Author of <span class="italic">The Ink That Fades</span> and <span class="italic">The Heart That Holds On</span></p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                <a href="#books" class="btn-primary px-8 py-3 rounded-full font-medium text-lg inline-block">Explore My Books</a>
+                <a href="#writing" class="btn-secondary px-8 py-3 rounded-full font-medium text-lg inline-block">Read My Writing</a>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-soft-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Poetic Quote Section -->
+    <section class="quote-section py-20 px-4" id="quote">
+        <div class="container mx-auto max-w-4xl text-center">
+            <blockquote class="text-2xl md:text-4xl italic font-light leading-relaxed mb-6" id="animated-quote">
+                "You called it a phase. But the sky still remembers how we named each other constellations."
+            </blockquote>
+            <p class="text-right text-soft-pink text-lg md:text-xl pr-4 md:pr-12 reveal" style="transition-delay: 0.3s;">— The Heart That Holds On</p>
+        </div>
+    </section>
+    
+    <!-- Books Showcase Section -->
+    <section class="py-20 px-4" id="books">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center reveal">My Books</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <!-- Book 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal" style="transition-delay: 0.1s;">
+                    <div class="book-cover rounded-t-2xl">
+                        <img src="the-ink-that-fades-cover.jpg" alt="The Ink That Fades Book Cover" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">The Ink That Fades</h3>
+                        <p class="text-pale-lavender mb-6 italic">"Words written in disappearing ink still leave impressions on paper."</p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://amazon.com/your-book-link" class="btn-primary px-4 py-2 rounded-full text-sm inline-block">Ebook - Amazon</a>
+                            <a href="https://pothi.com/your-book-link" class="btn-secondary px-4 py-2 rounded-full text-sm inline-block">Paperback - Pothi</a>
+                            <a href="https://pothi.com/your-hardcover-link" class="btn-secondary px-4 py-2 rounded-full text-sm inline-block">Hardcover - Pothi</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Book 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden reveal" style="transition-delay: 0.2s;">
+                    <div class="book-cover rounded-t-2xl">
+                        <img src="the-heart-that-holds-on-cover.jpg" alt="The Heart That Holds On Book Cover" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">The Heart That Holds On</h3>
+                        <p class="text-pale-lavender mb-6 italic">"Some memories refuse to be forgotten, like stars that burn brightest at night."</p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://amazon.com/your-second-book-link" class="btn-primary px-4 py-2 rounded-full text-sm inline-block">Ebook - Amazon</a>
+                            <a href="https://pothi.com/your-second-book-link" class="btn-secondary px-4 py-2 rounded-full text-sm inline-block">Paperback - Pothi</a>
+                            <a href="https://pothi.com/your-second-hardcover-link" class="btn-secondary px-4 py-2 rounded-full text-sm inline-block">Hardcover - Pothi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="py-20 px-4" id="about">
+        <div class="container mx-auto max-w-3xl text-center reveal">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">About Me</h2>
+            <p class="text-xl md:text-2xl leading-relaxed font-light">
+                Before I was an aspiring marketer, I was just someone writing unsent letters to people who left. My books are those letters — turned into chapters.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Final Call to Action Section -->
+    <section class="cta-section py-20 px-4 rounded-t-3xl" id="cta">
+        <div class="container mx-auto max-w-3xl text-center reveal">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">"The pages may end… but the story doesn't."</h2>
+            <p class="text-lg md:text-xl mb-8">Follow my writing journey and revisit memories through words.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                <a href="#books" class="bg-navy hover:bg-opacity-80 text-white px-8 py-3 rounded-full font-medium text-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg inline-block">My Books</a>
+                <a href="https://your-portfolio-link.com" class="bg-transparent border-2 border-navy text-navy px-8 py-3 rounded-full font-medium text-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-navy hover:bg-opacity-10 inline-block">Visit My Portfolio</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 px-4 text-center text-sm text-white text-opacity-70">
+        <p>© 2025 Divyansh Maghanani. All rights reserved.</p>
+    </footer>
 
-<script>
-    const starsContainer = document.querySelector('.stars');
-    const starCount = 50;
-
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star');
-
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
-        const size = Math.random() * 1.5 + 0.5;
-
-        star.style.left = x + "%";
-        star.style.top = y + "%";
-        star.style.width = size + "px";
-        star.style.height = size + "px";
-        star.style.opacity = Math.random() * 0.7 + 0.3;
-
-        starsContainer.appendChild(star);
-    }
-
-    let lastScrollTime = 0;
-    const scrollThrottle = 10;
-
-    window.addEventListener('scroll', () => {
-        const now = Date.now();
-        if (now - lastScrollTime > scrollThrottle) {
-            lastScrollTime = now;
+    <script>
+        // Create optimized stars (reduced count)
+        const starsContainer = document.querySelector('.stars');
+        const starCount = 50; // Reduced from 200
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            // Random position
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            
+            // Random size (smaller)
+            const size = Math.random() * 1.5 + 0.5;
+            
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            starsContainer.appendChild(star);
+        }
+        
+        // Optimized scroll handler with throttling
+        let lastScrollTime = 0;
+        const scrollThrottle = 10; // ms
+        
+        window.addEventListener('scroll', () => {
+            const now = Date.now();
+            if (now - lastScrollTime > scrollThrottle) {
+                lastScrollTime = now;
+                updateScrollProgress();
+                updateCinematicBars();
+                checkElementsInView();
+            }
+        }, { passive: true });
+        
+        function updateScrollProgress() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector(".progress-bar").style.width = scrolled + "%";
+        }
+        
+        // Cinematic bars effect (optimized)
+        function updateCinematicBars() {
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Show bars when scrolling (reduced max height)
+            const barHeight = Math.min(20, scrollPosition / 20);
+            document.querySelector('.cinematic-top').style.height = `${barHeight}px`;
+            document.querySelector('.cinematic-bottom').style.height = `${barHeight}px`;
+            
+            // Hide bars when at top or bottom
+            if (scrollPosition < 50 || scrollPosition > documentHeight - windowHeight - 50) {
+                document.querySelector('.cinematic-top').style.height = '0';
+                document.querySelector('.cinematic-bottom').style.height = '0';
+            }
+        }
+        
+        // Modified reveal elements to work with scrolling up and down
+        function checkElementsInView() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.remove('active');
+                }
+            });
+            
+            // Check if quote is in view for text animation
+            const quote = document.getElementById('animated-quote');
+            if (quote) {
+                const quoteTop = quote.getBoundingClientRect().top;
+                const quoteBottom = quote.getBoundingClientRect().bottom;
+                
+                if (quoteTop < windowHeight && quoteBottom > 0) {
+                    animateQuoteText(true);
+                } else {
+                    animateQuoteText(false);
+                }
+            }
+        }
+        
+        // Animate quote text with proper spacing
+        function setupQuoteAnimation() {
+            const quote = document.getElementById('animated-quote');
+            if (!quote || quote.dataset.animated === 'true') return;
+            
+            const text = quote.textContent.trim();
+            quote.innerHTML = '';
+            quote.dataset.animated = 'true';
+            
+            // Process each character, preserving spaces
+            for (let i = 0; i < text.length; i++) {
+                if (text[i] === ' ') {
+                    // Create a proper space element
+                    const space = document.createElement('span');
+                    space.classList.add('animated-space');
+                    quote.appendChild(space);
+                } else {
+                    const span = document.createElement('span');
+                    span.classList.add('animated-text');
+                    span.textContent = text[i];
+                    span.style.transitionDelay = `${i * 0.02}s`; // Slightly faster than before
+                    quote.appendChild(span);
+                }
+            }
+        }
+        
+        // Control quote animation based on visibility
+        function animateQuoteText(isVisible) {
+            const spans = document.querySelectorAll('#animated-quote .animated-text');
+            
+            if (isVisible) {
+                spans.forEach((span, index) => {
+                    setTimeout(() => {
+                        span.classList.add('active');
+                    }, index * 20);
+                });
+            } else {
+                spans.forEach(span => {
+                    span.classList.remove('active');
+                });
+            }
+        }
+        
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                setupQuoteAnimation();
+                checkElementsInView();
+            }, 100);
+        });
+        
+        // Smooth scrolling for anchor links (optimized)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Use requestAnimationFrame for smoother scrolling
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Mobile optimization
+        function checkMobile() {
+            if (window.innerWidth <= 768) {
+                // Disable some effects on mobile
+                document.querySelectorAll('.star').forEach(star => {
+                    star.style.display = star.dataset.index % 3 === 0 ? 'block' : 'none';
+                });
+            } else {
+                document.querySelectorAll('.star').forEach(star => {
+                    star.style.display = 'block';
+                });
+            }
+        }
+        
+        // Check on load and resize
+        window.addEventListener('load', checkMobile);
+        window.addEventListener('resize', checkMobile);
+        
+        // Preload critical resources
+        window.addEventListener('load', () => {
+            // Mark document as ready
+            document.body.classList.add('loaded');
+            
+            // Initial updates
             updateScrollProgress();
             updateCinematicBars();
             checkElementsInView();
-        }
-    }, { passive: true });
-
-    function updateScrollProgress() {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        document.querySelector(".progress-bar").style.width = scrolled + "%";
-    }
-
-    function updateCinematicBars() {
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-
-        const barHeight = Math.min(20, scrollPosition / 20);
-        document.querySelector('.cinematic-top').style.height = barHeight + "px";
-        document.querySelector('.cinematic-bottom').style.height = barHeight + "px";
-
-        if (scrollPosition < 50 || scrollPosition > documentHeight - windowHeight - 50) {
-            document.querySelector('.cinematic-top').style.height = '0';
-            document.querySelector('.cinematic-bottom').style.height = '0';
-        }
-    }
-
-    function checkElementsInView() {
-        const reveals = document.querySelectorAll('.reveal');
-        const windowHeight = window.innerHeight;
-
-        reveals.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 150;
-
-            if (elementTop < windowHeight - elementVisible) {
-                element.classList.add('active');
-            } else {
-                element.classList.remove('active');
-            }
         });
-
-        const quote = document.getElementById('animated-quote');
-        if (quote) {
-            const quoteTop = quote.getBoundingClientRect().top;
-            const quoteBottom = quote.getBoundingClientRect().bottom;
-
-            if (quoteTop < windowHeight && quoteBottom > 0) {
-                animateQuoteText(true);
-            } else {
-                animateQuoteText(false);
+        
+        // Parallax effect for stars (optimized)
+        window.addEventListener('scroll', () => {
+            // Only apply parallax if not on mobile
+            if (window.innerWidth > 768) {
+                const scrollPosition = window.scrollY;
+                const stars = document.querySelectorAll('.star');
+                
+                // Only process every third star for better performance
+                for (let i = 0; i < stars.length; i += 3) {
+                    const star = stars[i];
+                    const speed = i % 5 === 0 ? 0.1 : 0.05;
+                    const yPos = scrollPosition * speed;
+                    star.style.transform = `translateY(${yPos}px)`;
+                }
             }
-        }
-    }
-
-    function setupQuoteAnimation() {
-        const quote = document.getElementById('animated-quote');
-        if (!quote || quote.dataset.animated === 'true') return;
-
-        const text = quote.textContent.trim();
-        quote.innerHTML = '';
-        quote.dataset.animated = 'true';
-
-        for (let i = 0; i < text.length; i++) {
-            if (text[i] === ' ') {
-                const space = document.createElement('span');
-                space.classList.add('animated-space');
-                quote.appendChild(space);
-            } else {
-                const span = document.createElement('span');
-                span.classList.add('animated-text');
-                span.textContent = text[i];
-                span.style.transitionDelay = (i * 0.02) + "s";
-                quote.appendChild(span);
-            }
-        }
-    }
-
-    function animateQuoteText(isVisible) {
-        const spans = document.querySelectorAll('#animated-quote .animated-text');
-
-        if (isVisible) {
-            spans.forEach((span, index) => {
-                setTimeout(() => {
-                    span.classList.add('active');
-                }, index * 20);
-            });
-        } else {
-            spans.forEach(span => {
-                span.classList.remove('active');
-            });
-        }
-    }
-
-    // Initialize after DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        setupQuoteAnimation();
-        checkElementsInView();
-    });
-</script>
-
-</body>
-</html>
+        }, { passive: true });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9641f50fa1c77eb0',t:'MTc1MzM0NDc5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>

@@ -411,6 +411,7 @@
             --deep-blue: #0f0f1a;
         }
 
+        
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
@@ -420,6 +421,7 @@
         }
 
         /* Simplified navbar for mobile */
+        
         .navbar {
             background: linear-gradient(to right, rgba(10, 10, 20, 0.85), rgba(26, 26, 46, 0.85));
             backdrop-filter: blur(20px);
@@ -432,7 +434,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .navbar::before {
             content: '';
             position: absolute;
@@ -448,18 +450,18 @@
                 transparent);
             z-index: 1;
         }
-        
+
         .navbar.scrolled {
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
             background: linear-gradient(to right, rgba(5, 5, 15, 0.95), rgba(15, 15, 35, 0.95));
         }
-        
+
         .nav-container {
             position: relative;
             z-index: 10;
         }
-        
+
         .nav-glow {
             position: absolute;
             top: -50%;
@@ -470,14 +472,14 @@
             pointer-events: none;
             z-index: -1;
         }
-        
+
         .logo-container {
             position: relative;
             display: flex;
             align-items: center;
             padding: 0.5rem 0;
         }
-        
+
         .logo-bg {
             position: absolute;
             top: 50%;
@@ -498,6 +500,7 @@
             transition: all 0.3s ease;
         }
 
+        
         .logo-container:hover .logo-bg {
             opacity: 1;
         @media (max-width: 767px) {
@@ -507,6 +510,7 @@
             }
         }
 
+        
         .logo {
             font-family: 'Cinzel', serif;
             font-weight: 900;
@@ -520,7 +524,6 @@
             transition: all 0.3s ease;
         }
 
-        
         @media (max-width: 767px) {
             .logo-text {
                 font-size: 1.1rem !important;
@@ -536,12 +539,14 @@
             animation: shine 8s linear infinite;
         }
 
+        
         @keyframes shine {
             to {
                 background-position: 200% center;
             }
         }
 
+        
         .logo::before, .logo::after {
             content: '';
             position: absolute;
@@ -555,25 +560,25 @@
             opacity: 0;
             transition: all 0.6s ease;
         }
-        
+
         .logo::before {
             transform: scale(1.05);
         }
-        
+
         .logo::after {
             transform: scale(1.1);
         }
-        
+
         .logo:hover::before, .logo:hover::after {
             opacity: 1;
         }
-        
+
         .logo:hover {
             text-shadow: 
                 0 0 10px rgba(224, 170, 255, 0.8),
                 0 0 20px rgba(224, 170, 255, 0.4);
         }
-        
+
         .logo-divider {
             position: absolute;
             right: 0;
@@ -583,13 +588,13 @@
             width: 1px;
             background: linear-gradient(to bottom, transparent, rgba(224, 170, 255, 0.7), transparent);
         }
-        
+
         .nav-links-container {
             position: relative;
             display: flex;
             align-items: center;
         }
-        
+
         /* Desktop navigation links */
         .nav-link {
             font-family: 'Montserrat', sans-serif;
@@ -606,6 +611,7 @@
             font-size: 0.85rem;
         }
 
+        
         .nav-link::before {
         .nav-link::after {
             content: '';
@@ -623,6 +629,7 @@
             transform-origin: right;
         }
 
+        
         .nav-link::after {
             content: '';
             position: absolute;
@@ -638,20 +645,22 @@
             transform-origin: left;
         }
 
+        
         .nav-link:hover {
             text-shadow: 0 0 12px rgba(224, 170, 255, 0.8);
             color: var(--accent-pink);
         }
 
+        
         .nav-link:hover::before, .nav-link:hover::after {
             transform: translateX(0);
         }
-        
+
         .nav-link span {
             position: relative;
             z-index: 2;
         }
-        
+
         .nav-link .hover-bg {
             position: absolute;
             top: 0;
@@ -663,11 +672,11 @@
             transition: opacity 0.4s ease;
             z-index: 1;
         }
-        
+
         .nav-link:hover .hover-bg {
             opacity: 1;
         }
-        
+
         .mobile-menu {
             transform: translateY(-100%);
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -677,11 +686,11 @@
             border-bottom: 1px solid rgba(224, 170, 255, 0.2);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-        
+
         .mobile-menu.open {
             transform: translateY(0);
         }
-        
+
         .hamburger {
             width: 40px;
             height: 40px;
@@ -703,6 +712,7 @@
             padding: 4px;
         }
 
+        
         .hamburger::before {
             content: '';
             position: absolute;
@@ -715,12 +725,12 @@
             opacity: 0;
             transition: all 0.3s ease;
         }
-        
+
         .hamburger:hover::before {
             opacity: 1;
             transform: scale(1.1);
         }
-        
+
         .hamburger div {
         .hamburger-btn span {
             display: block;
@@ -735,6 +745,7 @@
             border-radius: 2px;
         }
 
+        
         .hamburger.open .line1 {
             transform: rotate(-45deg) translate(-4px, 4px);
             width: 22px;
@@ -742,17 +753,19 @@
             transform: rotate(45deg) translate(3px, 3px);
         }
 
+        
         .hamburger.open .line2 {
         .hamburger-btn.active span:nth-child(2) {
             opacity: 0;
             transform: translateX(-10px);
         }
-        
+
         .hamburger.open .line3 {
             transform: rotate(45deg) translate(-4px, -4px);
             width: 22px;
         }
 
+        
         .mobile-nav-link {
             position: relative;
             overflow: hidden;
@@ -764,6 +777,7 @@
             transform: rotate(-45deg) translate(3px, -3px);
         }
 
+        
         .mobile-nav-link::before {
             content: '';
             position: absolute;
@@ -780,7 +794,7 @@
             transform: scaleY(0);
             transition: transform 0.4s ease;
         }
-        
+
         .mobile-nav-link:hover {
             background: rgba(224, 170, 255, 0.1);
             transform: translateX(5px);
@@ -795,6 +809,7 @@
             transition: all 0.3s ease;
         }
 
+        
         .mobile-nav-link:hover::before {
             transform: scaleY(1);
         .mobile-menu.active {
@@ -802,6 +817,7 @@
             visibility: visible;
         }
 
+        
         /* Particle effect */
         .particles-container {
             position: absolute;
@@ -818,6 +834,7 @@
             max-width: 280px;
         }
 
+        
         .particle {
             position: absolute;
             background: rgba(224, 170, 255, 0.5);
@@ -840,6 +857,7 @@
             transition: all 0.3s ease;
         }
 
+        
         @keyframes float {
             0%, 100% {
                 transform: translateY(0) translateX(0);
@@ -864,10 +882,10 @@
     <nav class="navbar fixed w-full z-50 px-4 py-4 transition-all duration-500 text-white">
         <!-- Particles Background -->
         <div class="particles-container" id="particles"></div>
-        
+
         <div class="container mx-auto flex justify-between items-center nav-container">
             <div class="nav-glow"></div>
-            
+
 <body>
     <!-- Super simplified navigation bar -->
     <nav class="navbar fixed w-full z-50 px-3 py-2 md:px-4 md:py-4 text-white">
@@ -884,6 +902,7 @@
                 <span class="logo-text text-xl md:text-2xl">AUROLINES</span>
             </a>
 
+            
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center nav-links-container">
                 <a href="index.html" class="nav-link text-white">
@@ -914,6 +933,7 @@
                 <a href="contact me.html" class="nav-link text-white">Contact Me</a>
             </div>
 
+            
             <!-- Mobile Hamburger -->
             <!-- Hamburger Button -->
             <div class="md:hidden">
@@ -924,7 +944,7 @@
                 </button>
             </div>
         </div>
-        
+
         <!-- Mobile Menu -->
         <div class="mobile-menu absolute top-full left-0 w-full md:hidden">
             <div class="container mx-auto py-6 px-4 flex flex-col">
@@ -953,37 +973,36 @@
         </div>
     </div>
 
-    
     <script>
         // Create particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 10;
-            
+
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                
+
                 // Random size between 1-3px
                 const size = Math.random() * 2 + 1;
                 particle.style.width = ${size}px;
                 particle.style.height = ${size}px;
-                
+
                 // Random position
                 particle.style.left = ${Math.random() * 100}%;
                 particle.style.top = ${Math.random() * 100}%;
-                
+
                 // Random animation duration
                 const duration = Math.random() * 10 + 5;
                 particle.style.animationDuration = ${duration}s;
-                
+
                 // Random animation delay
                 particle.style.animationDelay = ${Math.random() * 5}s;
-                
+
                 particlesContainer.appendChild(particle);
             }
         }
-        
+
         // Hamburger Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
@@ -992,12 +1011,12 @@
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
 
+            
             const hamburger = document.getElementById('hamburger-button');
             const mobileMenu = document.querySelector('.mobile-menu');
             hamburgerBtn.addEventListener('click', function() {
                 this.classList.toggle('active');
                 mobileMenu.classList.toggle('active');
-
                 
                 // Toggle body scroll
                 if (mobileMenu.classList.contains('active')) {
@@ -1007,6 +1026,7 @@
                 }
             });
 
+            
             hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('open');
                 mobileMenu.classList.toggle('open');
@@ -1019,6 +1039,7 @@
                 });
             });
 
+            
             // Scroll Effect for Navbar
             window.addEventListener('scroll', () => {
                 const navbar = document.querySelector('.navbar');
@@ -1031,21 +1052,21 @@
                     navbar.style.background = 'rgba(10, 10, 20, 0.9)';
                 }
             });
-            
+
             // Animate particles on mousemove
             document.addEventListener('mousemove', (e) => {
                 const particles = document.querySelectorAll('.particle');
                 const mouseX = e.clientX / window.innerWidth;
                 const mouseY = e.clientY / window.innerHeight;
-                
+
                 particles.forEach((particle, index) => {
                     const offsetX = (mouseX - 0.5) * 20 * (index % 3);
                     const offsetY = (mouseY - 0.5) * 20 * ((index + 1) % 3);
-                    
+
                     particle.style.transform = translate(${offsetX}px, ${offsetY}px);
                 });
             });
-            
+
             // Add hover effect to nav links
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
@@ -1056,7 +1077,7 @@
                         }
                     });
                 });
-                
+
                 link.addEventListener('mouseleave', () => {
                     navLinks.forEach(otherLink => {
                         otherLink.style.opacity = '1';
@@ -1108,6 +1129,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
             <!-- Email Contact Card -->
             <div class="fade-up" style="transition-delay: 0.4s;">
+                <a href="divyanshmaghnani5@gmail.com" class="block">
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=divyanshmaghnani5@gmail.com" class="block">
                     <div class="contact-card rounded-2xl p-6 h-full flex items-center">
                         <div class="w-16 h-16 flex items-center justify-center rounded-full bg-[#3b0a45] mr-6">
@@ -1211,7 +1233,6 @@
 
                 <div class="text-center">
                     <a href="#" class="glass-button about-button py-3 px-8 rounded-full inline-block">
-                    <a href="about me.html" class="glass-button about-button py-3 px-8 rounded-full inline-block">
                         About Me
                     </a>
                 </div>

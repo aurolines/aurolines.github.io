@@ -1,18 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://aurolines.github.io/</loc>
-  </url>
-  <url>
-    <loc>https://aurolines.github.io/books.html</loc>
-  </url>
-  <url>
-    <loc>https://aurolines.github.io/explore-my-writing.html</loc>
-  </url>
-  <url>
-    <loc>https://aurolines.github.io/about-me.html</loc>
-  </url>
-  <url>
-    <loc>https://aurolines.github.io/contact-me.html</loc>
-  </url>
-</urlset>
+https://aurolines.github.io/index.html
+https://aurolines.github.io/contact-me.html
+https://aurolines.github.io/books.html
+https://aurolines.github.io/about-me.html
+https://aurolines.github.io/explore-my-writing.html

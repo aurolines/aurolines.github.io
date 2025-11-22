@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="canonical" href="https://aurolines.github.io/how-i-self-published.html" />
+  <meta name="robots" content="index, follow" />
+
+  <title>How I Self-Published My First Book — Step-by-Step | Divyansh Maghanani</title>
+  <meta name="description" content="A practical, step-by-step guide to self-publishing on Amazon KDP in India: formatting, costs, distribution, launch marketing and checklist — by Divyansh Maghanani." />
+  <meta name="keywords" content="self publish India, Amazon KDP India, how to self publish a book, book marketing for authors, author website SEO, ebook publishing India, promote a romance book, poetry book promotion tips, indie author marketing strategy, low-cost book launch ideas" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How I Self-Published My First Book — Step-by-Step" />
+  <meta property="og:description" content="Practical guide to self-publishing on Amazon KDP: formatting, costs, launch marketing and SEO for authors." />
+  <meta property="og:image" content="https://aurolines.github.io/og-image.jpeg" />
+  <meta property="og:url" content="https://aurolines.github.io/how-i-self-published.html" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How I Self-Published My First Book — Step-by-Step" />
+  <meta name="twitter:description" content="Practical guide to self-publishing on Amazon KDP: formatting, costs, launch marketing and SEO for authors." />
+  <meta name="twitter:image" content="https://aurolines.github.io/og-image.jpeg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (utilities used for layout) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Analytics (kept) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F2PS1CXQ6X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F2PS1CXQ6X', { 'anonymize_ip': true });
+  </script>
+
+  <!-- Article structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"How I Self-Published My First Book — Step-by-Step",
+    "author":{"@type":"Person","name":"Divyansh Maghanani"},
+    "publisher":{"@type":"Organization","name":"Aurolines","logo":{"@type":"ImageObject","url":"https://aurolines.github.io/og-image.jpeg"}},
+    "datePublished":"2025-11-22",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://aurolines.github.io/how-i-self-published.html"},
+    "description":"A practical guide to self-publishing on Amazon KDP: formatting, costs, distribution, launch marketing and checklist."
+  }
+  </script>
+
+  <!-- =========================
+       HERO: Glass card + Quill SVG (Option A)
+       lightweight, responsive, accessible
+       ========================= -->
+  <style>
+    :root{
+      --navy:#1a1a2e; --plum:#3b0a45; --mauve:#4e2758;
+      --soft-pink:#ffd6eb; --pale-lavender:#e6d7f2; --glass: rgba(255,255,255,0.04);
+      --max-width:980px; --card-radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{font-family:'Montserrat',sans-serif;background:linear-gradient(135deg,var(--navy),var(--plum));color:#fff;margin:0;line-height:1.55;-webkit-font-smoothing:antialiased;}
+    a{color:var(--pale-lavender);text-decoration:none}
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px 18px;}
+
+    /* Hero layout */
+    .hero-row{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}
+    .hero-text{flex:1;min-width:260px}
+    .badge{display:inline-block;padding:6px 10px;background:linear-gradient(90deg,var(--soft-pink),var(--pale-lavender));color:var(--navy);border-radius:999px;font-weight:600;margin-right:8px;font-size:0.85rem}
+    .h1{font-family:'Cinzel',serif;font-size:2.2rem;margin:0 0 8px;color:#fff;line-height:1.02}
+    .lead{color:var(--pale-lavender);margin-bottom:12px;font-size:1rem}
+    .meta{color:rgba(255,255,255,0.68);font-size:0.92rem;margin-bottom:12px}
+
+    /* New hero card */
+    .hero-card-wrap{flex:0 0 420px;max-width:420px;min-width:260px}
+    .hero-card{
+      border-radius:var(--card-radius);
+      padding:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+      display:flex;
+      gap:14px;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    /* Card left: circular quill container */
+    .quill-circle{
+      width:92px;height:92px;border-radius:50%;
+      background:linear-gradient(135deg, rgba(255,214,235,0.06), rgba(230,215,242,0.03));
+      border:1px solid rgba(255,214,235,0.08);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 8px 28px rgba(59,10,69,0.22);
+      position:relative;
+      flex-shrink:0;
+    }
+
+    /* subtle glow */
+    .quill-circle::after{
+      content:"";position:absolute;inset:-10px;border-radius:50%;filter:blur(18px);
+      background: radial-gradient(circle at 30% 30%, rgba(255,214,235,0.06), transparent 30%);
+      opacity:0.9;pointer-events:none;
+    }
+
+    /* Quill SVG styles */
+    .quill-svg{width:56px;height:56px;display:block;opacity:0.98;transform-origin:center;transition:transform .5s ease}
+    .quill-circle:hover .quill-svg{transform:translateY(-4px) rotate(-6deg);}
+
+    /* Right: title area */
+    .hero-card-content{display:flex;flex-direction:column;gap:6px}
+    .hero-head{font-family:'Cinzel',serif;font-size:1.15rem;color:var(--pale-lavender);margin:0}
+    .hero-sub{font-size:0.92rem;color:var(--soft-pink);margin:0;opacity:0.96}
+
+    /* Floating particles - subtle */
+    .particles{position:relative;min-height:1px}
+    .particle{
+      position:absolute;width:6px;height:6px;border-radius:50%;
+      background:linear-gradient(90deg,#ffd6eb,#e6d7f2);
+      opacity:0.12;filter:blur(1px);
+      animation: drift 6s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes drift{
+      0%{transform:translateY(0) translateX(0);opacity:0.12}
+      50%{transform:translateY(-8px) translateX(6px);opacity:0.18}
+      100%{transform:translateY(0) translateX(0);opacity:0.12}
+    }
+
+    /* Buttons */
+    .btn-quick{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--soft-pink),var(--pale-lavender));color:var(--navy);font-weight:700;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,0.25)}
+    .btn-secondary{display:inline-block;padding:10px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--pale-lavender)}
+
+    /* Article grid */
+    .article-grid{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
+    .article-main{background:rgba(255,255,255,0.02);padding:18px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+    .sidebar{position:sticky;top:22px;height:max-content;padding:14px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.03)}
+    .kv{background:var(--glass);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);margin:10px 0;color:rgba(255,255,255,0.95)}
+    .pull{margin:18px 0;padding:16px;border-left:4px solid var(--soft-pink);background:linear-gradient(90deg, rgba(255,214,235,0.02), transparent);font-style:italic;color:var(--pale-lavender);border-radius:6px}
+    .details summary{cursor:pointer;list-style:none;padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02);font-weight:600}
+    .details[open] summary{background:linear-gradient(90deg, rgba(255,214,235,0.02), rgba(230,215,242,0.01))}
+    .details div{padding:12px 10px;color:rgba(255,255,255,0.95)}
+    h2{font-family:'Cinzel',serif;color:var(--pale-lavender);font-size:1.05rem;margin-top:14px;margin-bottom:8px}
+    p{margin:0 0 12px}
+    ul{margin:0 0 12px;padding-left:18px}
+    .small{font-size:0.92rem;color:rgba(255,255,255,0.78)}
+    .fade-up{opacity:0;transform:translateY(8px);transition:opacity .45s ease, transform .45s cubic-bezier(.2,.9,.2,1)}
+    .fade-up.visible{opacity:1;transform:none}
+
+    /* Responsive */
+    @media (max-width:990px){
+      .article-grid{grid-template-columns:1fr}
+      .hero-card-wrap{max-width:100%}
+      .hero-row{align-items:flex-start}
+      .hero-card{padding:18px}
+      .hero-text{order:2}
+    }
+    @media (max-width:420px){
+      .container{padding:18px 12px}
+      .h1{font-size:1.4rem}
+      .lead{font-size:0.95rem}
+      .quill-circle{width:72px;height:72px}
+      .quill-svg{width:44px;height:44px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .quill-circle::after,.particle{animation:none}
+      .quill-svg{transition:none}
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container" role="main">
+
+    <!--
+      INTERNAL NOTE: Resume file uploaded by user (internal path, not displayed)
+      /mnt/data/Resume - Career Objective.pdf.pdf
+      (kept as comment for internal reference only)
+    -->
+
+    <!-- HERO ROW -->
+    <section class="hero-row" aria-label="Hero">
+      <div class="hero-text fade-up" id="hero-text">
+        <h1 class="h1">How I Self-Published My First Book — Step-by-Step</h1>
+        <p class="lead">A compact, practical playbook on publishing on Amazon KDP (India): formatting, costs, distribution and low-cost launch tactics — from my experience.</p>
+        <div class="meta small">
+          <span class="badge">Practical Guide</span>
+          <span>Published Nov 22, 2025 • Reading time: ~8 min</span>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+          <a class="btn-quick" href="https://amzn.in/d/6Qh00Yv" target="_blank" rel="noopener">View The Ink That Fades</a>
+          <a class="btn-secondary" href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank" rel="noopener">Buy on Pothi</a>
+        </div>
+      </div>
+
+      <div class="hero-card-wrap fade-up" id="hero-card-wrap" aria-hidden="false">
+        <div class="hero-card" role="img" aria-label="Hero visual: quill and title">
+          <!-- left: quill circle -->
+          <div class="quill-circle" aria-hidden="true">
+            <!-- lightweight quill SVG -->
+            <svg class="quill-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="qg" x1="0" x2="1">
+                  <stop offset="0" stop-color="#ffd6eb"/>
+                  <stop offset="1" stop-color="#e6d7f2"/>
+                </linearGradient>
+              </defs>
+              <g fill="none" stroke="url(#qg)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                <!-- feather -->
+                <path d="M8 44c8-12 28-34 40-36" opacity="0.98"/>
+                <path d="M14 34c6-6 18-18 28-20" opacity="0.9"/>
+                <!-- quill shaft -->
+                <path d="M46 18c2 10-10 28-28 34" opacity="0.95"/>
+                <!-- small decorative lines -->
+                <path d="M20 44c6-3 18-10 26-20" opacity="0.6"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- right: hero title -->
+          <div class="hero-card-content">
+            <div>
+              <div class="hero-head">How I Self-Published My First Book</div>
+              <div class="hero-sub">Step-by-step guide to Amazon KDP, formatting, costs &amp; marketing</div>
+            </div>
+
+            <!-- subtle particles container, purely decorative -->
+            <div class="particles" aria-hidden="true" style="position:relative;height:8px;">
+              <span class="particle" style="left:12%;top:2%;animation-delay:0s;width:6px;height:6px;opacity:0.12"></span>
+              <span class="particle" style="left:48%;top:0%;animation-delay:1.4s;width:6px;height:6px;opacity:0.10"></span>
+              <span class="particle" style="left:76%;top:4%;animation-delay:2.1s;width:6px;height:6px;opacity:0.08"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLE GRID -->
+    <div class="article-grid">
+      <main class="article-main fade-up" id="main-article" role="article">
+        <div class="pull">“The pages may end… but the story doesn't.” — a short lesson on making your book discoverable</div>
+
+        <div class="card">
+          <p class="small">This page is action-first. Use the collapsible sections to expand what you need. Where possible I used zero-cost options — details below.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <a class="btn-secondary" href="#main-article">Jump to Article</a>
+            <a class="btn-secondary" href="#backlink-plan">Backlink Plan</a>
+            <a class="btn-secondary" href="https://aurolines.github.io">Author Home</a>
+          </div>
+        </div>
+
+        <details class="details" open>
+          <summary>1 — Quick checklist — publish-ready (expand)</summary>
+          <div>
+            <div class="kv">
+              <strong>Pre-launch checklist (zero-cost options included)</strong>
+              <ul>
+                <li>Final manuscript (proofread — peer swap reviews keep cost 0)</li>
+                <li>Cover: design on Canva (free) using KDP templates</li>
+                <li>ISBN: optional — KDP provides ASIN / free identifiers for print if acceptable</li>
+                <li>Formatted EPUB (Calibre/Free tools) + print-ready PDF</li>
+                <li>Book description, keywords, categories — optimise for Amazon & search engines</li>
+                <li>Author profile & links (free on Amazon Author Central, Pothi, Goodreads)</li>
+              </ul>
+            </div>
+            <p class="small">Note: publish with **0 ₹ outlay** using free tools and print-on-demand (Pothi / KDP) — printing cost is covered by buyer in POD mode.</p>
+          </div>
+        </details>
+
+        <details class="details">
+          <summary>2 — Formatting & file preparation (expand)</summary>
+          <div>
+            <p>Use free tools: Canva for cover + KDP templates, Calibre or Word templates for EPUB/PDF. Validate EPUB in Kindle Previewer. For print PDFs ensure margins and bleed match KDP/Pothi templates.</p>
+            <ul>
+              <li>2.0–2.5 line-height recommended for print readability</li>
+              <li>Export images at 300 DPI for print covers (Canva free supports this)</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="details">
+          <summary>3 — Costs & distribution (India — updated)</summary>
+          <div>
+            <p class="small">Reality: you can self-publish with zero upfront cost by using print-on-demand and free author tools.</p>
+            <ul>
+              <li><strong>Amazon KDP</strong> — free to upload. KDP's print distribution may not always deliver optimally within India for some print options.</li>
+              <li><strong>Pothi.com</strong> — recommended for India-focused POD and local delivery. Pothi supports print-when-ordered (no inventory cost). You only incur printing cost when a customer buys the book.</li>
+            </ul>
+            <p class="small">Recommendation: upload ebook to KDP for global reach and set up Pothi for Indian print deliveries (zero stock cost). Use both to maximize reach and delivery reliability.</p>
+          </div>
+        </details>
+
+        <details class="details">
+          <summary>4 — Publishing flow (exact steps I followed)</summary>
+          <div>
+            <ol>
+              <li>Prepare manuscript → choose ebook & print formats</li>
+              <li>Create cover in Canva (use KDP/Pothi dimensions)</li>
+              <li>Set up KDP & Pothi accounts → fill metadata & keywords deliberately</li>
+              <li>Upload files, preview proofs, publish</li>
+              <li>Claim Amazon Author page & list Pothi product link for Indian readers</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="details">
+          <summary>5 — Launch marketing — low-cost tactics</summary>
+          <div>
+            <ul>
+              <li>Use your author website as the hub — publish SEO articles that link to product pages</li>
+              <li>Share short BTS & reels on Instagram and LinkedIn</li>
+              <li>Use micro-influencers and book bloggers for reviews (often trade-copy)</li>
+              <li>Create an email signup and offer a free chapter PDF (hosts such as SlideShare/Scribd double as backlinks)</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="details">
+          <summary id="backlink-plan">6 — Backlink & outreach plan (30-day starter)</summary>
+          <div>
+            <ol>
+              <li>Week 1: Publish 2 related articles & share on LinkedIn & Medium (canonical to this page)</li>
+              <li>Week 2: Upload a PDF guide to SlideShare & Scribd; link back to this article</li>
+              <li>Week 3: Guest post on 1–2 book blogs and add author profile links on Goodreads/Pothi</li>
+              <li>Week 4: Seed Quora/Reddit answers linking to specific sections (value-first answers)</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="details">
+          <summary>7 — Results to track (expand)</summary>
+          <div>
+            <ul>
+              <li>Search Console impressions & top queries (weekly snapshots)</li>
+              <li>Clicks & CTR per page</li>
+              <li>Backlinks created and index status</li>
+              <li>Referral traffic to KDP & Pothi listings</li>
+            </ul>
+          </div>
+        </details>
+
+      </main>
+
+      <!-- Sidebar (quick links buttons + keywords) -->
+      <aside class="sidebar fade-up" aria-label="Quick links & SEO">
+        <div class="card small" style="margin-bottom:12px">
+          <strong style="display:block;margin-bottom:8px">Quick Links</strong>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a class="btn-quick" href="#main-article">Read Article</a>
+            <a class="btn-secondary" href="#backlink-plan">Backlink Plan</a>
+            <a class="btn-secondary" href="https://aurolines.github.io">Author Home</a>
+            <a class="btn-secondary" href="https://store.pothi.com/book/divyansh-maghanani-ink-fades-0/" target="_blank" rel="noopener">Pothi - Buy Print</a>
+          </div>
+        </div>
+
+        <div class="card small">
+          <strong style="display:block;margin-bottom:8px">SEO keywords (shortlist)</strong>
+          <p class="small" style="margin-top:6px">self publish India • Amazon KDP India guide • how to self publish a book • book marketing for authors • author website SEO</p>
+        </div>
+      </aside>
+    </div>
+
+    <footer style="margin-top:20px;text-align:center;color:rgba(255,255,255,0.6);font-size:0.9rem;">
+      © 2025 Divyansh Maghanani. All rights reserved.
+    </footer>
+  </div>
+
+  <!-- Minimal hero animations (particles + reveal) -->
+  <script>
+    // reveal animations
+    (function(){
+      const revealElems = document.querySelectorAll('.fade-up');
+      function revealVisible() {
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        revealElems.forEach(el=>{
+          const r = el.getBoundingClientRect();
+          if(r.top < vh - 60) el.classList.add('visible');
+        });
+      }
+      document.addEventListener('scroll', throttle(revealVisible, 120), {passive:true});
+      window.addEventListener('resize', throttle(revealVisible, 200));
+      window.addEventListener('load', revealVisible);
+      function throttle(fn, wait){
+        let t=0;
+        return function(){
+          const now=Date.now();
+          if(now - t > wait){ t=now; fn(); }
+        }
+      }
+      if(window.innerWidth <= 768 || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)){
+        document.documentElement.style.scrollBehavior = 'auto';
+        revealElems.forEach(el=>el.classList.add('visible'));
+      }
+    })();
+
+    // lightweight particle placement randomization for hero card
+    (function placeParticles(){
+      const particles = document.querySelectorAll('.particle');
+      particles.forEach((p,i)=>{
+        // randomize starting positions slightly
+        const left = 6 + Math.random()*86;
+        const top = Math.random()*14;
+        p.style.left = left + '%';
+        p.style.top = top + '%';
+      });
+    })();
+  </script>
+
+</body>
+</html>

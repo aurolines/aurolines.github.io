@@ -95,8 +95,26 @@
   }
   .hero-card:hover{ transform: translateY(-4px); }
   .kicker { display:inline-block; padding:6px 12px; border-radius:999px; background:linear-gradient(90deg,var(--accent-pink),var(--accent-lav)); color:var(--grad-1); font-weight:700; font-size:0.88rem; }
-  h1 { font-family:'Cinzel',serif; font-size:2rem; margin:6px 0; color:var(--accent-lav); line-height:1.04;}
-  .subtitle { color: var(--accent-pink); margin:0; font-weight:500;}
+
+  /* Generic h1 fallback retained but hero title is specifically protected below */
+  h1 { font-family:'Cinzel',serif; font-size:2rem; margin:6px 0; color:var(--accent-lav); line-height:1.04; }
+
+  /* ===== TITLE PROTECTION (HIGH SPECIFICITY) =====
+     prevents repo/global CSS or Tailwind from shrinking this hero title.
+     Includes an inline-style fallback on the element as the last-resort.
+  */
+  #title {
+    font-family: 'Cinzel', serif !important;
+    color: var(--accent-lav) !important;
+    font-weight: 700 !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.4px !important;
+    font-size: clamp(28px, 4.2vw, 44px) !important;
+    margin: 6px 0 !important;
+    display: block !important;
+  }
+
+  .subtitle { color: var(--accent-pink); margin:0; font-weight:500; }
   .meta { color: rgba(255,255,255,0.75); font-size:0.95rem; margin-top:8px; }
 
   /* hero visual */
@@ -134,7 +152,6 @@
     position:relative;
     overflow:hidden;
   }
-  /* animated sheen */
   .btn-primary::after{
     content:"";
     position:absolute;
@@ -189,6 +206,8 @@
   @media (max-width:900px) {
     .hero-card{ flex-direction:column; text-align:center; padding:18px; }
     .hero-visual{ order:-1; margin-bottom:8px; }
+    /* mobile fallback for #title so it remains readable */
+    #title { font-size: clamp(26px, 6.5vw, 36px) !important; }
   }
   @media (prefers-reduced-motion: reduce) {
     .reveal, .glass-circle, .btn-primary::after { transition:none !important; animation:none !important; }
@@ -205,7 +224,12 @@
           <div style="text-align:left">
             <span class="kicker">Zero-Budget Playbook</span>
           </div>
-          <h1 id="title">How to Market Your Book in India — Zero Budget</h1>
+
+          <!-- inline style safeguard (last-resort) -->
+          <h1 id="title" style="font-size: clamp(28px, 4.2vw, 44px); font-family: 'Cinzel', serif; font-weight:700;">
+            How to Market Your Book in India — Zero Budget
+          </h1>
+
           <p class="subtitle">Actionable tactics for KDP, Pothi, Goodreads, Instagram and SEO. No ad spend required.</p>
           <div class="meta">Published Nov 2025 • Reading time: ~8–10 min</div>
 

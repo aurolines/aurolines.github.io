@@ -68,10 +68,25 @@
   /* header */
   .hero {display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;margin-bottom:24px}
   .hero-card{width:100%;display:flex;gap:18px;align-items:center;padding:18px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:0 18px 48px rgba(0,0,0,0.35)}
+  /* generic h1 fallback (kept but will be specifically overridden below) */
   h1{font-family:'Cinzel',serif;font-size:1.9rem;margin:0;color:var(--accent-lav)}
   .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent-pink),var(--accent-lav));color:var(--grad-1);font-weight:700}
   .subtitle{color:var(--accent-pink);margin-top:6px}
   .meta{color:rgba(255,255,255,0.78);margin-top:6px}
+
+  /* *** Title protection - HIGH specificity so repo/global CSS can't shrink this *** */
+  /* ID selector + important + inline style on the element are used as multiple fallbacks */
+  #page-title {
+    font-family: 'Cinzel', serif;
+    color: var(--accent-lav);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.5px;
+    /* responsive sizing, high specificity and protected with !important */
+    font-size: clamp(28px, 4.0vw, 44px) !important;
+    margin: 0 !important;
+    display: block !important;
+  }
 
   /* body content */
   .content{display:flex;flex-direction:column;gap:20px}
@@ -101,7 +116,10 @@
 
   footer{margin-top:26px;text-align:center;color:rgba(255,255,255,0.66);padding-bottom:28px}
 
-  @media(max-width:900px){.hero-card{flex-direction:column;text-align:center}}
+  @media(max-width:900px){.hero-card{flex-direction:column;text-align:center} 
+    /* mobile safeguard for the title in case some global CSS changes size on small screens */
+    #page-title { font-size: clamp(26px, 6.5vw, 36px) !important; }
+  }
   @media (prefers-reduced-motion: reduce){.reveal, .btn-primary::after{transition:none}}
 </style>
 </head>
@@ -113,7 +131,12 @@
       <div class="hero-card reveal" id="hero">
         <div style="flex:1;text-align:left">
           <div><span class="kicker">Beginner's Guide</span></div>
-          <h1 id="page-title">How to Write Your First Book — A Practical, Step-by-Step Guide</h1>
+
+          <!-- Inline style as a last-resort fallback (highest priority) -->
+          <h1 id="page-title" style="font-size: clamp(28px, 4.0vw, 44px); font-family: 'Cinzel', serif; font-weight:700;">
+            How to Write Your First Book — A Practical, Step-by-Step Guide
+          </h1>
+
           <p class="subtitle">Plan, write, edit, format for KDP &amp; Pothi, and launch — no fluff, only action.</p>
           <div class="meta">Updated Nov 2025 • Reading time: ~10–12 minutes</div>
 

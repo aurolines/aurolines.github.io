@@ -75,7 +75,25 @@ body{
 .hero{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
 .hero-card{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:18px;padding:20px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);box-shadow:0 22px 60px rgba(0,0,0,0.45)}
 .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent-pink),var(--accent-lav));color:var(--navy);font-weight:700;font-size:0.88rem}
+
+/* Generic fallback for h1 kept but deliberately low priority — the #title rule below protects hero text */
 h1{font-family:'Cinzel',serif;font-size:1.95rem;margin:6px 0;color:var(--accent-lav);line-height:1.03}
+
+/* === Title protection (HIGH specificity) ===
+   This ensures your hero title won't be overridden by global h1 rules or Tailwind utilities.
+   The inline style on the element is also included as the last-resort fallback.
+*/
+#title {
+  font-family: 'Cinzel', serif !important;
+  color: var(--accent-lav) !important;
+  font-weight: 700 !important;
+  line-height: 1.03 !important;
+  letter-spacing: -0.5px !important;
+  font-size: clamp(28px, 4.0vw, 42px) !important;
+  margin: 6px 0 !important;
+  display: block !important;
+}
+
 .subtitle{color:var(--accent-pink);margin:0;font-weight:500}
 .meta{color:rgba(255,255,255,0.78)}
 
@@ -114,10 +132,12 @@ h1{font-family:'Cinzel',serif;font-size:1.95rem;margin:6px 0;color:var(--accent-
 .kv{display:flex;gap:10px;align-items:center}
 .kv b{min-width:140px;display:inline-block}
 
-/* responsive */
+/* responsive safeguards */
 @media (max-width:900px){
   .hero-card{flex-direction:column;align-items:flex-start}
   .kv b{min-width:110px}
+  /* mobile safeguard for the protected title */
+  #title { font-size: clamp(26px, 6.5vw, 36px) !important; }
 }
 @media (prefers-reduced-motion: reduce){
   .reveal, .btn-primary::after, .card-mini:hover{transition:none!important;transform:none!important}
@@ -132,7 +152,12 @@ h1{font-family:'Cinzel',serif;font-size:1.95rem;margin:6px 0;color:var(--accent-
     <div class="hero-card reveal" id="hero">
       <div style="flex:1">
         <div><span class="kicker">Pricing Playbook (India)</span></div>
-        <h1 id="title">How to Price Your Book in India — KDP &amp; Pothi (Practical)</h1>
+
+        <!-- inline style safeguard (last-resort) -->
+        <h1 id="title" style="font-size: clamp(28px, 4.0vw, 42px); font-family: 'Cinzel', serif; font-weight:700;">
+          How to Price Your Book in India — KDP &amp; Pothi (Practical)
+        </h1>
+
         <p class="subtitle">Real printing costs, margin math, competitor checks, and smart price points that sell.</p>
         <div class="meta">Updated Nov 2025 • Includes sample price tables for different page counts and trim sizes</div>
 

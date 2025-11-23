@@ -81,6 +81,17 @@ h1{font-family:'Cinzel',serif;font-size:1.9rem;margin:0;color:var(--accent-lav)}
 .fancy-home-btn:hover{transform:translateY(-4px);box-shadow:0 22px 48px rgba(255,214,235,0.35),0 0 24px rgba(123,104,238,0.25);} 
 .btn{transition:transform .22s ease, box-shadow .22s ease;} 
 .btn:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.22);} 
+/* Related list block (subtle, animated) */
+.related-wrap { margin-top:28px; padding:14px; border-radius:12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.03); display:block; }
+.related-wrap h3{ font-family:'Cinzel', serif; color:#e6d7f2; margin:0 0 8px; }
+.related-list{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:8px; }
+.related-list a{ display:inline-block; text-decoration:none; padding:8px 12px; border-radius:10px;
+  background: rgba(255,214,235,0.02); color: #fff; border:1px solid rgba(255,255,255,0.03);
+  transition: transform .18s, box-shadow .18s; font-weight:600;}
+.related-list a:hover{ transform: translateY(-6px); box-shadow:0 14px 30px rgba(59,10,69,0.12); }
+@media(max-width:900px){ .related-list{ justify-content:center } }
 </style>
 </head>
 <body>
@@ -189,6 +200,18 @@ h1{font-family:'Cinzel',serif;font-size:1.9rem;margin:0;color:var(--accent-lav)}
         <div class="card small"><strong>Low-cost:</strong> Publishing Platforms Rocket alternatives, MerchantWords (for validation)</div>
       </div>
     </section>
+<div class="related-wrap" aria-labelledby="related-h">
+  <h3 id="related-h">Related Guides</h3>
+  <ul class="related-list" aria-hidden="false">
+    <li><a href="https://aurolines.github.io/insights/how-to-self-publish.html">How to Self-Publish a Book</a></li>
+    <li><a href="https://aurolines.github.io/insights/how-to-write-your-first-book.html">How to Write Your First Book</a></li>
+    <li><a href="https://aurolines.github.io/insights/how-to-format-a-book.html">How to Format a Book (6×9)</a></li>
+    <li><a href="https://aurolines.github.io/insights/how-to-price-your-book-in-india.html">How to Price Your Book in India</a></li>
+    <li><a href="https://aurolines.github.io/insights/how-to-market-a-book-in-india.html">How to Market a Book in India</a></li>
+    <li><a href="https://aurolines.github.io/insights/keywords-for-authors.html">Keywords for Authors (SEO)</a></li>
+    <li><a href="https://aurolines.github.io/insights/best-ai-tools-for-students.html">Best AI Tools for Students</a></li>
+  </ul>
+</div>
 
     <div class="footer-note"><br>© 2025 Divyansh Maghanani</div>
 

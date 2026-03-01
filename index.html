@@ -418,18 +418,17 @@
             transition: all 0.3s ease;
             will-change: transform, opacity;
         }
-        
+
+        .animated-word {
+            display: inline-block;
+            white-space: nowrap;
+        }
         .animated-text.active {
             opacity: 1;
             transform: translateY(0);
         }
         
-        /* For spaces in animated text */
-        .animated-space {
-            display: inline-block;
-            width: 0.25em;
-        }
-        
+     
         /* Stars background (optimized) */
         .stars {
             position: fixed;
@@ -766,22 +765,31 @@
             quote.innerHTML = '';
             quote.dataset.animated = 'true';
             
-            // Process each character, preserving spaces
-            for (let i = 0; i < text.length; i++) {
-                if (text[i] === ' ') {
-                    // Create a proper space element
-                    const space = document.createElement('span');
-                    space.classList.add('animated-space');
-                    quote.appendChild(space);
-                } else {
+            // Wrap words to prevent line breaks in the middle of words
+            const words = text.split(' ');
+            let charIndex = 0;
+
+            words.forEach((word, wordIndex) => {
+                const wordSpan = document.createElement('span');
+                wordSpan.classList.add('animated-word');
+
+                for (let i = 0; i < word.length; i++) {
                     const span = document.createElement('span');
                     span.classList.add('animated-text');
-                    span.textContent = text[i];
-                    span.style.transitionDelay = `${i * 0.02}s`; // Slightly faster than before
-                    quote.appendChild(span);
+                    span.textContent = word[i];
+                    span.style.transitionDelay = `${charIndex * 0.02}s`;
+                    wordSpan.appendChild(span);
+                    charIndex += 1;
                 }
+
+                 quote.appendChild(wordSpan);
+
+                if (wordIndex < words.length - 1) {
+                    quote.appendChild(document.createTextNode(' '));
+                    charIndex += 1;
+                }
+            });
             }
-        }
         
         // Control quote animation based on visibility
         function animateQuoteText(isVisible) {

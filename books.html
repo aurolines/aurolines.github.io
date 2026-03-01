@@ -141,13 +141,16 @@
             width: 100%;
             display: none;
             background: linear-gradient(135deg, #3b0a45, #4e2758);
-            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             color: rgba(255, 255, 255, 0.9);
             font-family: serif;
             text-align: center;
+        }
+
+         .book-cover-placeholder.is-visible {
+            display: flex;
         }
         
         .book-cover-container {
@@ -575,7 +578,7 @@
                 <div class="book-cover-container scanner-effect">
                     <div class="absolute inset-0 bg-gradient-to-b from-purple-900/30 to-pink-900/30 z-10"></div>
                     <!-- Replace this with your actual book cover image -->
-                    <img src="the-ink-fades.jpg.jpg" alt="Book cover of The Ink That Fades by Divyansh Maghanani" class="book-cover">
+                    <img src="the-ink-fades.jpg.jpg" alt="Book cover of The Ink That Fades by Divyansh Maghanani" class="book-cover" loading="eager" fetchpriority="high" decoding="async">
                     <!-- Fallback if image doesn't load -->
                     <div class="book-cover-placeholder absolute inset-0">
                         <div class="text-2xl mb-3 no-break">The Ink</div>
@@ -599,7 +602,7 @@
                 <div class="book-cover-container scanner-effect">
                     <div class="absolute inset-0 bg-gradient-to-b from-purple-900/30 to-pink-900/30 z-10"></div>
                     <!-- Replace this with your actual book cover image -->
-                    <img src="the-heart-holds.jpg.jpg" alt="Book cover of The Heart That Holds On by Divyansh Maghanani" class="book-cover">
+                     <img src="the-heart-holds.jpg.jpg" alt="Book cover of The Heart That Holds On by Divyansh Maghanani" class="book-cover" loading="eager" fetchpriority="high" decoding="async">
                     <!-- Fallback if image doesn't load -->
                     <div class="book-cover-placeholder absolute inset-0">
                         <div class="text-2xl mb-3 no-break">The Heart</div>
@@ -709,16 +712,36 @@
             // Handle image loading errors
             const bookCovers = document.querySelectorAll('.book-cover');
             bookCovers.forEach(cover => {
+                const placeholder = cover.closest('.book-cover-container')?.querySelector('.book-cover-placeholder');
+
+                const showPlaceholder = () => {
+                    cover.style.display = 'none';
+                    if (placeholder) placeholder.classList.add('is-visible');
+                };
+
+                const hidePlaceholder = () => {
+                    cover.style.display = 'block';
+                    if (placeholder) placeholder.classList.remove('is-visible');
+                };
+                
                 cover.addEventListener('error', function() {
                     // If image fails to load, show the placeholder
-                    this.style.display = 'none';
-                    this.nextElementSibling.style.display = 'flex';
+                   showPlaceholder();
                 });
                 
                 cover.addEventListener('load', function() {
                     // If image loads successfully, hide the placeholder
-                    this.nextElementSibling.style.display = 'none';
+                    hidePlaceholder();
                 });
+                
+                // Handle cached images (load event may have fired before listeners were attached)
+                if (cover.complete) {
+                    if (cover.naturalWidth > 0) {
+                        hidePlaceholder();
+                    } else {
+                        showPlaceholder();
+                    }
+                }
             });
             
             // Create cosmic particles
